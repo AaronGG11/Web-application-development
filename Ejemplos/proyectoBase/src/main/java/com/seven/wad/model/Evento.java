@@ -22,6 +22,6 @@ public class Evento
     private Integer idEvento;
     private String nombreEvento;
     private String sede;
-    private Date fechaIncio;
+    private Date fechaInicio;
     private Date fechaFin;
 }
