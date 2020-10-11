@@ -24,8 +24,8 @@ public class proyectoBase
     {
         Evento evento = new Evento();
         evento.setIdEvento(1);
-        evento.setNombreEvento("Semana cultural");
-        evento.setSede("ESCOM");
+        evento.setNombreEvento("Semana deportiva");
+        evento.setSede("UPIICSA");
         
         String user = "root";
         String password = "rootroot";
@@ -42,10 +42,10 @@ public class proyectoBase
             Logger.getLogger(proyectoBase.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        //actualizar(connection, evento);
-        //eliminar(connection, evento);
+        actualizar(connection, evento);
+        eliminar(connection, evento);
         //consultar(connection, evento);
-        insertar(connection, evento);   
+        //insertar(connection, evento);   
     }
 
     private static void actualizar(Connection connection, Evento evento) {
