@@ -5,6 +5,34 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <form method="post" action="EventoServlet">
+            <table>
+                <tr>
+                    <td>
+                        <label for="txtnombre"> Name</label>
+                    </td>
+                    <td>
+                        <input type="text" name="txtnombre" id="txtnombre" 
+                               placeholder="Nombre de evento" 
+                               required="required"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="txtsede"> Location</label>
+                    </td>
+                    <td>
+                        <input type="text" name="txtsede" id="txtnombre" 
+                               placeholder="Sede de evento" 
+                               required="required"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" value="enviar" name="enviar"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
     </body>
 </html>
