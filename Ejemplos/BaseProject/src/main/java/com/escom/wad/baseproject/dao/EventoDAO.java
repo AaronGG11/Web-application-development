@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.seven.wad.dao;
-
-import com.seven.wad.model.Evento;
+package com.escom.wad.baseproject.dao;
+import com.escom.wad.baseproject.model.Evento;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -22,12 +21,12 @@ import java.util.logging.Logger;
  */
 public class EventoDAO {
     private static final String SQL_INSERT = 
-            "insert into Evento (nombreEvento, sede, fechaInicio, fechaTermino) "
+            "insert into Evento (nombreEvento, sede, fechaInicio, fechaFin) "
             + "values (?, ?, ?, ?)";
     
     private static final String SQL_UPDATE = 
             "update Evento set "
-            + "nombreEvento = ?, sede = ?, fechaIncio = ?, fechaTermino = ? "
+            + "nombreEvento = ?, sede = ?, fechaIncio = ?, fechaFin = ? "
             + "where idEvento = ? ";
     
     private static final String SQL_DELETE = 
@@ -56,7 +55,7 @@ public class EventoDAO {
         }
     }
     
-    private void create(Evento evento) throws SQLException
+    public void create(Evento evento) throws SQLException
     {
         obtenerConexion();
         PreparedStatement ps = null;
@@ -206,3 +205,4 @@ public class EventoDAO {
         return resultados;
     } 
 }
+

@@ -3,17 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.seven.wad;
+package com.escom.wad.baseproject;
 
-import com.seven.wad.dao.EventoDAO;
-import com.seven.wad.model.Evento;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import com.escom.wad.baseproject.dao.EventoDAO;
+import com.escom.wad.baseproject.model.Evento;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -28,7 +22,9 @@ public class App
         evento.setNombreEvento("Semana de educación sexual");
         evento.setSede("ESIME");
         
+        
         EventoDAO dao = new EventoDAO();
         System.out.println(dao.readAll());
+       //dao.create(evento);
     }
 }

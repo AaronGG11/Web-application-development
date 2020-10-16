@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.seven.wad.model;
+package com.escom.wad.baseproject.model;
+import java.io.Serializable;
 import java.sql.Date;
 import lombok.*;
 
@@ -17,7 +18,7 @@ import lombok.*;
 /**
  * @author aarongarcia
  */
-public class Evento 
+public class Evento implements Serializable
 {
     private Integer idEvento;
     private String nombreEvento;
