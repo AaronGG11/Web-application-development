@@ -3,36 +3,74 @@
     <head>
         <title>Start Page</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     </head>
     <body>
-        <form method="post" action="EventoServlet">
-            <table>
-                <tr>
-                    <td>
-                        <label for="txtnombre"> Name</label>
-                    </td>
-                    <td>
-                        <input type="text" name="txtnombre" id="txtnombre" 
-                               placeholder="Nombre de evento" 
-                               required="required"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="txtsede"> Location</label>
-                    </td>
-                    <td>
-                        <input type="text" name="txtsede" id="txtnombre" 
-                               placeholder="Sede de evento" 
-                               required="required"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="submit" value="enviar" name="enviar"/>
-                    </td>
-                </tr>
-            </table>
-        </form>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">Registar Usuario</div>
+                        <div class="card-body">
+                            <form method="POST" action="">
+                                <div class="form-group row">
+                                    <label for="nombreEvento" 
+                                           class="col-md-4 col-form-label text-md-right">
+                                        Nombre Evento
+                                    </label>
+                                    <div class="col-md-6">
+                                        <input 
+                                            id="nombreEvento" 
+                                            type="text" 
+                                            class="form-control "
+                                            name="nombreEvento" 
+                                            value="valor demo" 
+                                            required 
+                                            autofocus />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="sede" 
+                                           class="col-md-4 col-form-label text-md-right">
+                                        Sede Evento
+                                    </label>
+                                    <div class="col-md-6">
+                                        <input 
+                                            id="sede" 
+                                            type="text" 
+                                            class="form-control "
+                                            name="sede" 
+                                            value="valor demo" 
+                                            required 
+                                            autofocus />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="fechaInicio" 
+                                            class="col-md-4 col-form-label text-md-right">
+                                                Fecha Inicio
+                                    </label>
+                                    <div class="col-md-6">
+                                        <input 
+                                            class="form-control" 
+                                            type="datetime-local" 
+                                            value="2011-08-19T13:45:00" 
+                                            id="fechaInicio">
+                                    </div>
+                                </div>
+                                <div class="form-group row mb-0">
+                                    <div class="col-md-6 offset-md-4">
+                                        <button type="submit" class="btn btn-primary">
+                                            Register                                
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            
     </body>
 </html>
