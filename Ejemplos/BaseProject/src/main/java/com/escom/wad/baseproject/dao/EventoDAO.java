@@ -30,10 +30,10 @@ public class EventoDAO {
             + "where idEvento = ? ";
     
     private static final String SQL_DELETE = 
-            "delete from Eventro where idEvento = ?";
+            "delete from Evento where idEvento = ?";
     
     private static final String SQL_SELECT = 
-            "select * from Eventro where idEvento = ?";
+            "select * from Evento where idEvento = ?";
     
     private static final String SQL_SELECT_ALL = 
             "select * from Evento";

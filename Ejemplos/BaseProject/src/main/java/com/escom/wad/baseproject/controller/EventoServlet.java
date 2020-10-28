@@ -299,15 +299,16 @@ public class EventoServlet extends HttpServlet {
                 out.println("</div>");
             out.println("</div>");
             
+            out.println("<div class='container'>");
             out.println("<div class=\"card text-white bg-primary mb-3\" style=\"max-width: 18rem;\">");
-            out.println("<div class=\"card-header\">Header</div>");
+            out.println("<div class=\"card-header\">Evento</div>");
             out.println("<div class=\"card-body\">");
-            out.println("<h5 class=\"card-title\">Primary card title</h5>");
-            out.println("<h2>Id del evento</h2>");
-            out.println("<h2>Nombre del evento</h2>");
-            out.println("<h2>Sede del evento</h2>");
-            out.println("<h2>Fecha de inicio del evento</h2>");
-            out.println("<h2>Fecha de fin del evento</h2>");
+            out.println("<p>Id del evento: "+ e.getIdEvento() +"</p>");
+            out.println("<p>Nombre del evento: "+ e.getNombreEvento()+"</p>");
+            out.println("<p>Sede del evento: "+ e.getSede() +"</p>");
+            out.println("<p>Fecha de inicio del evento: "+ e.getFechaInicio() +"</p>");
+            out.println("<p>Fecha de fin del evento: "+ e.getFechaFin() +"</p>");
+            out.println("</div>");
             out.println("</div>");
             out.println("</div>");
          
