@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -126,7 +127,7 @@ public class EventoServlet extends HttpServlet {
             
             out.println("<div class='container'>");
             
-            out.println("<button type=\"button\" class=\"btn btn-outline-success\">Nuevo evento</button>");
+            out.println("<a href='EventoServlet?accion=nuevo' class='btn btn-success'>Nuevo Evento</a>");
             
 
             out.println("<table class='table table-stripped table-responsive table-bordered'>");
@@ -191,7 +192,6 @@ public class EventoServlet extends HttpServlet {
                     // Ocultar mediante un formulario para no ver id, si no quiero mostrar nada
                     out.println("<a href='EventoServlet?accion=eliminar&id=" + idEvento +"' > Eliminar </a>");
       
-                    // Error 500 -> 
                     out.println("<a href='EventoServlet?accion=actualizar&id=" + idEvento +"' > Actualizar </a>");
                     out.println("<a href='EventoServlet?accion=ver&id=" + idEvento +"' > Ver </a>");
                     out.println("</td>");
@@ -213,7 +213,15 @@ public class EventoServlet extends HttpServlet {
     }
 
     private void nuevoEvento(HttpServletRequest request, HttpServletResponse response) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            //response.sendRedirect("eventosForm.html");
+            RequestDispatcher vista = request.getRequestDispatcher("eventosForm.html");
+            vista.forward(request, response);
+        } catch (IOException ex) {
+            Logger.getLogger(EventoServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ServletException ex) {
+            Logger.getLogger(EventoServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private void eliminarEvento(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -225,7 +233,9 @@ public class EventoServlet extends HttpServlet {
             e.setIdEvento(Integer.parseInt(request.getParameter("id")));
             dao.delete(e);
             
-            listaDeEventos(request, response);
+            response.sendRedirect("EventoServlet?accion=listaDeEventos");
+            
+            //listaDeEventos(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(EventoServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -301,9 +311,9 @@ public class EventoServlet extends HttpServlet {
             
             out.println("<div class='container'>");
             out.println("<div class=\"card text-white bg-primary mb-3\" style=\"max-width: 18rem;\">");
-            out.println("<div class=\"card-header\">Evento</div>");
+            out.println("<div class=\"card-header\">ID Evento: " + e.getIdEvento() + "</div>");
             out.println("<div class=\"card-body\">");
-            out.println("<p>Id del evento: "+ e.getIdEvento() +"</p>");
+            
             out.println("<p>Nombre del evento: "+ e.getNombreEvento()+"</p>");
             out.println("<p>Sede del evento: "+ e.getSede() +"</p>");
             out.println("<p>Fecha de inicio del evento: "+ e.getFechaInicio() +"</p>");
