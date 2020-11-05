@@ -26,7 +26,7 @@ public class EventoDAO {
     
     private static final String SQL_UPDATE = 
             "update Evento set "
-            + "nombreEvento = ?, sede = ?, fechaIncio = ?, fechaFin = ? "
+            + "nombreEvento = ?, sede = ?, fechaInicio = ?, fechaFin = ? "
             + "where idEvento = ? ";
     
     private static final String SQL_DELETE = 
@@ -78,27 +78,22 @@ public class EventoDAO {
     }
     
     
-    public void update(Evento evento) throws SQLException
-    {
+    public void update(Evento e) throws SQLException {
         obtenerConexion();
         PreparedStatement ps = null;
-        
-        try
-        {
+        try {
             ps = connection.prepareStatement(SQL_UPDATE);
-            ps.setString(1, evento.getNombreEvento());
-            ps.setString(2, evento.getSede());
-            ps.setDate(3, evento.getFechaInicio());
-            ps.setDate(4, evento.getFechaFin());
-            ps.setInt(5, evento.getIdEvento());
+            ps.setString(1, e.getNombreEvento());
+            ps.setString(2, e.getSede());
+            ps.setDate(3, e.getFechaInicio());
+            ps.setDate(4, e.getFechaFin());
+            ps.setInt(5, e.getIdEvento());
             ps.executeUpdate();
-        }
-        finally
-        {
+        } finally {
             if (ps != null) {
                 ps.close();
             }
-            if (connection != null){
+            if (connection != null) {
                 connection.close();
             }
         }

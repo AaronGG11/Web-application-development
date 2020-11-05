@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author aarongarcia
  */
-@WebServlet(name = "EventoServlet2710", urlPatterns = {"/EventoServlet2710"})
+@WebServlet(name = "EventoServlet", urlPatterns = {"/EventoServlet"})
 public class EventoServlet extends HttpServlet {
 
     /**
@@ -220,7 +220,7 @@ public class EventoServlet extends HttpServlet {
     private void nuevoEvento(HttpServletRequest request, HttpServletResponse response) {
         try {
             //response.sendRedirect("eventosForm.html");
-            RequestDispatcher vista = request.getRequestDispatcher("eventosForm.html");
+            RequestDispatcher vista = request.getRequestDispatcher("createForm.html");
             vista.forward(request, response);
         } catch (IOException ex) {
             Logger.getLogger(EventoServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -261,7 +261,7 @@ public class EventoServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Datos de evento</title>"); 
+            out.println("<title>Actualizar evento</title>"); 
             out.println("<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>");
             out.println("<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css\" integrity=\"sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2\" crossorigin=\"anonymous\">");
             out.println("</head>");
@@ -275,19 +275,18 @@ public class EventoServlet extends HttpServlet {
             
             out.println("<div class='container'>");
             
-            
-            
                 out.println("<div class='row justify-content-center'>");
                 out.println("<div class='col-md-8'>");
                     out.println("<div class='card'>");
                         out.println("<div class='card-header'>Actualizar evento</div>");
                         out.println("<div class='card-body'>");
+                        
                             out.println("<form method='POST' action='EventoServlet?accion=guardar'>");
                                 
                                 out.println("<div class='form-group row'>");
-                                    out.println("<label for='idevento' class='col-md-4 col-form-label text-md-right'>Identificador</label>");
+                                    out.println("<label for='id' class='col-md-4 col-form-label text-md-right'>Identificador</label>");
                                     out.println("<div class='col-md-6'>");
-                                        out.println("<input id='idevento' type='text' class='form-control 'name='idevento' placeholder='"+ e.getIdEvento() +"'  required autofocus readonly/>");
+                                        out.println("<input readonly='readonly' id='id' type='text' class='form-control 'name='id' value='"+ e.getIdEvento() +"'/>");
                                     out.println("</div>");
                                 out.println("</div>");
                             
@@ -330,7 +329,6 @@ public class EventoServlet extends HttpServlet {
             out.println("</div>");            
             out.println("</body>");
             out.println("</html>");
-            // tarea terminar fucnionalidad para actualizar un evento 
         }
             
             
@@ -339,11 +337,12 @@ public class EventoServlet extends HttpServlet {
         }
     }
 
-    private void almacenarEvento(HttpServletRequest request, HttpServletResponse response) throws IOException {
-            //int id = Integer.parseInt(request.getParameter("id"));
-            
+    private void almacenarEvento(HttpServletRequest request, HttpServletResponse response) throws IOException {            
             Evento e = new Evento();
             EventoDAO dao = new EventoDAO();
+            
+            System.out.println(request.getParameter("id"));
+            // nuevo evento
             if(request.getParameter("id") == null || request.getParameter("id").isEmpty()){
                e.setNombreEvento(request.getParameter("nombreEvento"));
                e.setSede(request.getParameter("sede"));
@@ -352,7 +351,6 @@ public class EventoServlet extends HttpServlet {
 
                 try {
                     dao.create(e);
-                    
                     response.sendRedirect("EventoServlet?accion=listaDeEventos");
                     
                 } catch (SQLException ex) {
@@ -360,6 +358,7 @@ public class EventoServlet extends HttpServlet {
                 }
                 
             }else{
+                e.setIdEvento(Integer.parseInt(request.getParameter("id")));
                 e.setNombreEvento(request.getParameter("nombreEvento"));
                 e.setSede(request.getParameter("sede"));
                 e.setFechaInicio(Date.valueOf(request.getParameter("fechaInicio")));
