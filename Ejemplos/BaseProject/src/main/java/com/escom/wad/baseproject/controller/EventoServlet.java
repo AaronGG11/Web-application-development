@@ -286,7 +286,7 @@ public class EventoServlet extends HttpServlet {
                                 out.println("<div class='form-group row'>");
                                     out.println("<label for='id' class='col-md-4 col-form-label text-md-right'>Identificador</label>");
                                     out.println("<div class='col-md-6'>");
-                                        out.println("<input readonly='readonly' id='id' type='text' class='form-control 'name='id' value='"+ e.getIdEvento() +"'/>");
+                                        out.println("<input readonly='readonly' id='id' type='text' class='form-control 'name='id' value='"+ e.getIdEvento() +"' required/>");
                                     out.println("</div>");
                                 out.println("</div>");
                             

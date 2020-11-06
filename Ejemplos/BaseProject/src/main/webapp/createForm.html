@@ -20,7 +20,7 @@
                     <div class="card">
                         <div class="card-header">Registar Evento</div>
                         <div class="card-body">
-                            <form method="POST" action="EventoServlet?accion=guardar">
+                            <form method="POST" action="EventoServlet?accion=guardar" class="needs-validation" novalidate>
                                 <div class="form-group row">
                                     <label for="nombreEvento" 
                                            class="col-md-4 col-form-label text-md-right">
@@ -34,6 +34,9 @@
                                             name="nombreEvento" 
                                             required 
                                             autofocus />
+                                    </div>
+                                    <div class="valid-feedback">
+                                        Looks good!
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -81,6 +84,26 @@
                                             Registrar                                
                                     </button>
                             </form>
+                            <script>
+                            // Example starter JavaScript for disabling form submissions if there are invalid fields
+                            (function() {
+                              'use strict';
+                              window.addEventListener('load', function() {
+                                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                                var forms = document.getElementsByClassName('needs-validation');
+                                // Loop over them and prevent submission
+                                var validation = Array.prototype.filter.call(forms, function(form) {
+                                  form.addEventListener('submit', function(event) {
+                                    if (form.checkValidity() === false) {
+                                      event.preventDefault();
+                                      event.stopPropagation();
+                                    }
+                                    form.classList.add('was-validated');
+                                  }, false);
+                                });
+                              }, false);
+                            })();
+                            </script>
                         </div>
                     </div>
                 </div>
