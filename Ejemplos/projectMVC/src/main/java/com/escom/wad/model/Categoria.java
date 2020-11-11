@@ -25,4 +25,6 @@ public class Categoria implements Serializable{
     private Integer idCategoria;
     private String nombreCategoria;
     private String descripcionCategoria;
+    
+    
 }
