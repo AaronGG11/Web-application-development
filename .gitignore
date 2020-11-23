@@ -4,3 +4,4 @@
 ._.gitignore
 /Ejemplos/BaseProject/target/
 /Ejemplos/projectMVC/target/
+.DS_Store
