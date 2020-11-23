@@ -8,6 +8,7 @@ package com.escom.wad.model.dao;
 import com.escom.wad.model.dto.CategoriaDTO;
 import com.mysql.cj.jdbc.CallableStatement;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -36,26 +37,17 @@ public class CategoriaDAO {
     private Connection connection;
     
     private void getConnection(){
-        // we need a context 
-        Context initial_context;
-        Context component_environment;
-        
-        String resourceDataSource = "jdbc/3cm9";
-        
+        String user = "root";
+            String password = "rootroot";
+            String url = "jdbc:mysql://localhost:3306/WAD?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+            String driverMySql = "com.mysql.cj.jdbc.Driver";
+            
         try {
-            initial_context = new InitialContext();
-            component_environment = (Context) initial_context.lookup("java:comp/env");
-            DataSource dataSource = (DataSource) component_environment.lookup(resourceDataSource);
-            // From now, It's possible to create connections
-            
-            connection = dataSource.getConnection();
-            
-        } catch (NamingException ex) {
-            Logger.getLogger(CategoriaDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+            Class.forName(driverMySql);
+            connection = DriverManager.getConnection(url, user, password);
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(CategoriaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     }
     
     
@@ -71,7 +63,7 @@ public class CategoriaDAO {
             callableStatement = (CallableStatement) connection.prepareCall(SQL_INSERT);
             callableStatement.setString(1, dto.getEntidad().getNombreCategoria());
             callableStatement.setString(2, dto.getEntidad().getDescripcionCategoria());
-            callableStatement.executeQuery(); // review
+            callableStatement.executeUpdate(); // review
         } finally  {
             if(callableStatement != null){
                 callableStatement.close();

@@ -20,6 +20,7 @@
         
         
         <div class="container">
+            <h1>P&aacute;gina de errores</h1>
             <div class="alert alert-danger" role="alert">
                 <p>
                     Ocurrio un error en:  <%= de%>
@@ -31,8 +32,6 @@
 
             </div>
         </div>
-
-        
 
         
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
