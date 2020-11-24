@@ -1,6 +1,6 @@
 <%-- 
-    Document   : index
-    Created on : Nov 22, 2020, 3:32:10 PM
+    Document   : categoriaForm
+    Created on : Nov 24, 2020, 11:12:00 AM
     Author     : aarongarcia
 --%>
 
@@ -9,14 +9,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>P&aacute;gina de inicio</title>
+        <title>JSP Page</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
     </head>
     <body>
-        <div class="container">
-            <h1>P&aacute;gina de inicio</h1>
-            <a href="CategoriaServlet?accion=nuevo">Nuevo</a>
-        </div>
+        <h1>Hello World!</h1>
+        
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" ></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
