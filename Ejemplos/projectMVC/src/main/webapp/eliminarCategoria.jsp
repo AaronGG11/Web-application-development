@@ -20,6 +20,7 @@
             <h1>Eliminar categoria</h1>
             
             <%
+                // continuar la evolucion de los modelos de desarrollo hasta terminar en mvc
                 Integer id = Integer.parseInt(request.getParameter("id"));
                 
                 CategoriaDAO dao = new CategoriaDAO();
@@ -29,7 +30,7 @@
                 
                 dao.delete(dto);
                 
-                out.println("Categoria id=" + id + " eliminada correctamente");
+                out.println("Categoria id=  " + id + " eliminada correctamente");
             %>
         </div>
 
