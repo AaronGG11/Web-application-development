@@ -58,3 +58,7 @@ delimiter ;
 call spInsertarCategoria("Ropa de hombre", "Pantalon, camisa, sacos, ropa ejecutiva, ropa interior, ropa deportiva");
 call spInsertarCategoria("Ropa de mujer", "Pantalon, blusa, faldas, ropa ejecutiva, ropa interior, ropa deportiva");
 call spInsertarCategoria("Celular", "Libres, Por operadora, accesorios, telefonia fija");
+
+
+show procedure status;
+show function status;
