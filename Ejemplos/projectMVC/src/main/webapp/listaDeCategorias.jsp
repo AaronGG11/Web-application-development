@@ -23,9 +23,10 @@
             <table class="table table-sm table-bordered table-striped table-hover ">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col">Clave</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Descripci&oacute;n</th>
+                        <th scope="col" class="text-center">Clave</th>
+                        <th scope="col" class="text-center">Nombre</th>
+                        <th scope="col" class="text-center">Descripci&oacute;n</th>
+                        <th scope="col" class="text-center">Acci&oacute;n</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,7 +40,7 @@
                     %>
 
                     <tr>
-                        <th>
+                        <th class="text-center">
                             <%= dto.getEntidad().getIdCategoria() %>
                         </th>
                         <td>
@@ -47,6 +48,9 @@
                         </td>
                         <td>
                             <%= dto.getEntidad().getDescripcionCategoria() %>
+                        </td>
+                        <td class="text-center">
+                            <a href="eliminarCategoria.jsp?id=<%=dto.getEntidad().getIdCategoria()%>">Eliminar</a>
                         </td>
                     </tr>
                     
