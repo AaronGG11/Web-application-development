@@ -164,12 +164,12 @@ public class CategoriaServlet extends HttpServlet {
         CategoriaDAO dao = new CategoriaDAO();
         CategoriaDTO dto = new CategoriaDTO();
 
-        // Nuevo eleemento
+        // Atributos en común
         dto.getEntidad().setNombreCategoria(request.getParameter("txtnombre"));
         dto.getEntidad().setDescripcionCategoria(request.getParameter("txtdescripcion"));
 
         try {
-            if (request.getParameter("id") == null || request.getParameter("id").isEmpty()) {
+            if (request.getParameter("id") == null || request.getParameter("id").isEmpty()) { // Nuevo elemento
                 dao.create(dto);
                 listarCategorias(request, response);
             } else { // actualizacion
