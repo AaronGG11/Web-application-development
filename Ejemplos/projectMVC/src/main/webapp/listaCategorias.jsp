@@ -5,6 +5,7 @@
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@page errorPage="error.jsp?de=listaDeCategorias.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -30,7 +31,7 @@
                             <a class="nav-link" href="CategoriaServlet?accion=listaDeCategorias">Lista de categorias</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="CategoriaServlet?accion=guardar">Registrar categoria</a>
+                            <a class="nav-link" href="CategoriaServlet?accion=nuevo">Registrar categoria</a>
                         </li>
                     </ul>
                 </div>

@@ -20,13 +20,13 @@ public class App {
         CategoriaDAO dao = new CategoriaDAO();
         
         Categoria entidad = new Categoria();
-        entidad.setIdCategoria(1);
+        entidad.setIdCategoria(9);
         entidad.setNombreCategoria("Bebes");
         entidad.setDescripcionCategoria("Ropa, juguetes");
         
         dto.setEntidad(entidad);
         
-        System.out.println(dao.read(dto));
+        dao.update(dto);
         
     }
 }

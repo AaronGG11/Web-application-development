@@ -30,7 +30,7 @@
                             <a class="nav-link" href="CategoriaServlet?accion=listaDeCategorias">Lista de categorias</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="CategoriaServlet?accion=guardar">Registrar categoria</a>
+                            <a class="nav-link" href="CategoriaServlet?accion=nuevo">Registrar categoria</a>
                         </li>
                     </ul>
                 </div>

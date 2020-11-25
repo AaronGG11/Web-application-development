@@ -5,6 +5,7 @@
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page errorPage="error.jsp?de=listaDeCategorias.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -30,7 +31,7 @@
                             <a class="nav-link" href="CategoriaServlet?accion=listaDeCategorias">Lista de categorias</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="CategoriaServlet?accion=guardar">Registrar categoria</a>
+                            <a class="nav-link" href="CategoriaServlet?accion=nuevo">Registrar categoria</a>
                         </li>
                     </ul>
                 </div>
@@ -45,11 +46,12 @@
             <div class="card-body">
                 <form 
                     action="CategoriaServlet?accion=guardar" 
-                    method="post" 
+                    method="POST" 
                     name="formCategoria" 
                     id="formCategoria">
 
                     <input 
+                        class="form-control"
                         type="hidden" 
                         name="id" 
                         id="id" 
@@ -62,13 +64,12 @@
 
                         <div class="col-sm-10">
                             <input 
+                                id="txtnombre"
                                 type="text" 
                                 name="txtnombre" 
-                                id="txtnombre"
-                                max="50" 
+                                class="form-control"
                                 required="requiered" 
                                 placeholder="Nombre de categoria"
-                                class="form-control"
                                 value="<c:out value="${dto.entidad.nombreCategoria}"/>"/>
                         </div>
                     </div>
@@ -83,7 +84,6 @@
                                 type="text" 
                                 name="txtdescripcion" 
                                 id="txtdescripcion"
-                                max="50" 
                                 required="requiered" 
                                 placeholder="Descripci&oacute;n de categoria"
                                 class="form-control"
@@ -94,20 +94,15 @@
                     <button type="submit" class="form-group row offset-md-0 btn btn-outline-primary col-md-12">
                         Guardar                               
                     </button>
+                </form>
             </div>
-
-        </form>
-    </div>
-
-
-
-</div>
+        </div>
 
 
 
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" ></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-</body>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" ></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    </body>
 </html>
