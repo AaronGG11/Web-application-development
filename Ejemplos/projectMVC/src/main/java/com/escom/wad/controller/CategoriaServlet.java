@@ -6,6 +6,7 @@
 package com.escom.wad.controller;
 
 import com.escom.wad.model.dao.CategoriaDAO;
+import com.escom.wad.model.dto.CategoriaDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -120,7 +121,20 @@ public class CategoriaServlet extends HttpServlet {
     
     
     private void mostrarcategoria(HttpServletRequest request, HttpServletResponse response) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        CategoriaDAO dao = new CategoriaDAO();
+        CategoriaDTO dto = new CategoriaDTO();
+        
+        dto.getEntidad().setIdCategoria(Integer.parseInt(request.getParameter("id")));
+        
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("ver.jsp");
+        
+        try {
+            dto = dao.read(dto);
+            request.setAttribute("categoria", dto);
+            requestDispatcher.forward(request, response);
+        } catch (SQLException | ServletException | IOException ex) {
+            Logger.getLogger(CategoriaServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private void agregarCategoria(HttpServletRequest request, HttpServletResponse response) {
@@ -133,7 +147,16 @@ public class CategoriaServlet extends HttpServlet {
     }
 
     private void eliminarCategoria(HttpServletRequest request, HttpServletResponse response) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        CategoriaDAO dao = new CategoriaDAO();
+        CategoriaDTO dto = new CategoriaDTO();
+        
+        dto.getEntidad().setIdCategoria(Integer.parseInt(request.getParameter("id")));
+        try {
+            dao.delete(dto);
+            listarCategorias(request,response);
+        } catch (SQLException ex) {
+            Logger.getLogger(CategoriaServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private void guardarCategoria(HttpServletRequest request, HttpServletResponse response) {
@@ -141,7 +164,20 @@ public class CategoriaServlet extends HttpServlet {
     }
 
     private void actualizarCategoria(HttpServletRequest request, HttpServletResponse response) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        CategoriaDAO dao = new CategoriaDAO();
+        CategoriaDTO dto = new CategoriaDTO();
+        
+        dto.getEntidad().setIdCategoria(Integer.parseInt(request.getParameter("id")));
+        
+        try {
+            dto = dao.read(dto);
+            request.setAttribute("dto", dto);
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("categoriaForm.jsp");
+            requestDispatcher.forward(request, response);
+            
+        } catch (SQLException | ServletException | IOException ex) {
+            Logger.getLogger(CategoriaServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

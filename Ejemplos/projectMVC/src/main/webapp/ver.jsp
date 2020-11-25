@@ -1,15 +1,16 @@
 <%-- 
-    Document   : index
-    Created on : Nov 22, 2020, 3:32:10 PM
+    Document   : ver.jsp
+    Created on : Nov 25, 2020, 11:28:25 AM
     Author     : aarongarcia
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>P&aacute;gina de inicio</title>
+        <title>JSP Page</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
     </head>
     <body>
@@ -23,7 +24,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Home</a>
+                            <a class="nav-link" href="/projectMVC/">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="CategoriaServlet?accion=listaDeCategorias">Lista de categorias</a>
@@ -34,6 +35,19 @@
                     </ul>
                 </div>
             </nav>
+            
+            <div class="card bg-light">
+                <div class="card-header">
+                    Datos de categoria
+                </div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item"><c:out value="${categoria.entidad.idCategoria}"/></li>
+                        <li class="list-group-item"><c:out value="${categoria.entidad.nombreCategoria}"/></li>
+                        <li class="list-group-item"><c:out value="${categoria.entidad.descripcionCategoria}"/></li>
+                    </ul>
+                </div>
+            </div>
 
         </div>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
