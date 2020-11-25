@@ -36,15 +36,17 @@
                 </div>
             </nav>
             
+            <br>
+            
             <div class="card bg-light">
                 <div class="card-header">
                     Datos de categoria
                 </div>
                 <div class="card-body">
                     <ul class="list-group">
-                        <li class="list-group-item"><c:out value="${categoria.entidad.idCategoria}"/></li>
-                        <li class="list-group-item"><c:out value="${categoria.entidad.nombreCategoria}"/></li>
-                        <li class="list-group-item"><c:out value="${categoria.entidad.descripcionCategoria}"/></li>
+                        <li class="list-group-item"><strong>Id: </strong><c:out value="${categoria.entidad.idCategoria}"/></li>
+                        <li class="list-group-item"><strong>Nombre: </strong><c:out value="${categoria.entidad.nombreCategoria}"/></li>
+                        <li class="list-group-item"><strong>Descripci&oacute;n: </strong><c:out value="${categoria.entidad.descripcionCategoria}"/></li>
                     </ul>
                 </div>
             </div>

@@ -38,7 +38,7 @@
 
             <div class="card-header bg-primary">
                 <h1>
-                    Datos de la categoria
+                    Datos de categoria
                 </h1>
             </div>
 
@@ -56,11 +56,11 @@
                         value="<c:out value="${dto.entidad.idCategoria}"/>"/>
 
                     <div class="form-group row">
-                        <div class="col-sm-6">
-                            <label class="col-sm-2 col-form-label">Nombre</label>
+                        <div class="col-sm-2">
+                            <label class="col-sm-2 col-form-label">Nombre:</label>
                         </div>
 
-                        <div class="col-sm-6">
+                        <div class="col-sm-10">
                             <input 
                                 type="text" 
                                 name="txtnombre" 
@@ -74,22 +74,26 @@
                     </div>
 
                     <div class="form-group row">
-                        <div class="col-sm-6">
-                            <label class="col-sm-2 col-form-label">Descripcion</label>
+                        <div class="col-sm-2">
+                            <label class="col-sm-2 col-form-label">Descripci&oacute;n:</label>
                         </div>
 
-                        <div class="col-sm-6">
+                        <div class="col-sm-10">
                             <input 
                                 type="text" 
                                 name="txtdescripcion" 
                                 id="txtdescripcion"
                                 max="50" 
                                 required="requiered" 
-                                placeholder="Descripcion de categoria"
+                                placeholder="Descripci&oacute;n de categoria"
                                 class="form-control"
-                            value="<c:out value="${dto.entidad.descripcionCategoria}"/>"/>
+                                value="<c:out value="${dto.entidad.descripcionCategoria}"/>"/>
                         </div>
                     </div>
+
+                    <button type="submit" class="form-group row offset-md-0 btn btn-outline-primary col-md-12">
+                        Guardar                               
+                    </button>
             </div>
 
         </form>
