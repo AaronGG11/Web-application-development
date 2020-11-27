@@ -15,12 +15,25 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Lista de categorias</title>
+        <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
     </head>
     <body>        
         <div class="container">
-            <h1>P&aacute;gina de lista de categorias</h1><br>
-            <table class="table table-sm table-bordered table-striped table-hover ">
+            <h1>P&aacute;gina de lista de categorias</h1>
+            <div style='margin-bottom:12px; margin-top: 20px' class="row">
+                <div class="col-sm-2">
+                    <a href="formularioCategoria.jsp" class='btn btn-success'><i class='bx bx-add-to-queue'></i> Nueva categor&iacute;a</a>
+                </div>
+                <div class="col-sm-10">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Maecenas ultricies mi eget mauris pharetra et ultrices. Iaculis nunc sed augue lacus viverra vitae congue.</p>
+                </div>
+                
+                
+                
+            </div>
+         
+            <table class="table table-sm table-bordered table-hover ">
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col" class="text-center">Clave</th>
@@ -41,7 +54,10 @@
 
                     <tr>
                         <th class="text-center">
-                            <%= dto.getEntidad().getIdCategoria() %>
+                            
+                            <a href="verCategoria.jsp?id=<%= dto.getEntidad().getIdCategoria() %>">
+                                <%= dto.getEntidad().getIdCategoria() %>
+                            </a>
                         </th>
                         <td>
                             <%= dto.getEntidad().getNombreCategoria() %>
@@ -50,7 +66,8 @@
                             <%= dto.getEntidad().getDescripcionCategoria() %>
                         </td>
                         <td class="text-center">
-                            <a href="eliminarCategoria.jsp?id=<%=dto.getEntidad().getIdCategoria()%>">Eliminar</a>
+                            <a href="eliminarCategoria.jsp?id=<%=dto.getEntidad().getIdCategoria()%>" class='btn btn-danger'><i class='bx bxs-trash-alt'></i></a>
+                            <a href="formularioCategoria.jsp?id=<%=dto.getEntidad().getIdCategoria()%>" class='btn btn-warning'><i class='bx bxs-pencil'></i></a>
                         </td>
                     </tr>
                     

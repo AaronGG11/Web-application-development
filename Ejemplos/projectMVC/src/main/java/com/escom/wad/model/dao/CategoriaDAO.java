@@ -81,9 +81,9 @@ public class CategoriaDAO {
         
         try {
             callableStatement = (CallableStatement) connection.prepareCall(SQL_UPDATE);
-            callableStatement.setString(1, dto.getEntidad().getNombreCategoria());
-            callableStatement.setString(2, dto.getEntidad().getDescripcionCategoria());
-            callableStatement.setInt(3, dto.getEntidad().getIdCategoria());
+            callableStatement.setString(2, dto.getEntidad().getNombreCategoria());
+            callableStatement.setString(3, dto.getEntidad().getDescripcionCategoria());
+            callableStatement.setInt(1, dto.getEntidad().getIdCategoria());
             
             callableStatement.executeUpdate();
         } finally  {
@@ -144,7 +144,6 @@ public class CategoriaDAO {
                 connection.close();
             }
         }
-        
     }
     
     
@@ -176,7 +175,6 @@ public class CategoriaDAO {
                 connection.close();
             }
         }
-        
     }
     
     
@@ -193,7 +191,5 @@ public class CategoriaDAO {
         }
         
         return results;
-    }
-    
-    
+    }    
 }
