@@ -6,7 +6,7 @@
 package com.escom.wad.model.dao;
 
 import com.escom.wad.model.dto.EntidadFederativaDTO;
-import com.escom.wad.model.dto.UsuarioDTO;
+import com.escom.wad.model.dto.MunicipioDTO;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -21,11 +21,11 @@ import java.util.logging.Logger;
  *
  * @author aarongarcia
  */
-public class EntidadFederativaDAO {
-    private static final String SQL_INSERT = "{call spInsertarEntidadFederativa(?,?,?)}";
-    private static final String SQL_DELETE = "{call spBorrarEntidadFederativa(?)}";
-    private static final String SQL_SELECT = "{call spVerEntidadFederativa(?)}";
-    private static final String SQL_SELECT_ALL = "{call spVerEntidadesFederativas()}";
+public class MunicipioDAO {
+    private static final String SQL_INSERT = "{call spInsertarMunicipio(?,?,?)}";
+    private static final String SQL_DELETE = "{call spBorrarMunicipio(?)}";
+    private static final String SQL_SELECT = "{call spVerMunicipio(?)}";
+    private static final String SQL_SELECT_ALL = "{call spVerMunicipios()}";
     
     private Connection connection;
     
@@ -45,15 +45,15 @@ public class EntidadFederativaDAO {
     }
     
     
-    public void create(EntidadFederativaDTO dto) throws SQLException{
+    public void create(MunicipioDTO dto) throws SQLException{
         getConnection();
         CallableStatement callableStatement = null;
         
         try {
             callableStatement = (CallableStatement) connection.prepareCall(SQL_INSERT);
-            callableStatement.setInt(1, dto.getEntidad().getIdEntidadFederativa());
-            callableStatement.setString(2, dto.getEntidad().getNombre());
-            callableStatement.setString(3, dto.getEntidad().getAbreviatura());
+            callableStatement.setInt(1, dto.getEntidad().getIdMunicipio());
+            callableStatement.setInt(2, dto.getEntidad().getIdEntidadFederativa());
+            callableStatement.setString(3, dto.getEntidad().getNombre());
 
             callableStatement.executeUpdate(); // review
         } finally  {
@@ -67,13 +67,13 @@ public class EntidadFederativaDAO {
     }
     
     
-    public void delete(EntidadFederativaDTO dto) throws SQLException{
+    public void delete(MunicipioDTO dto) throws SQLException{
         getConnection();
         CallableStatement callableStatement = null;
         
         try {
             callableStatement = (CallableStatement) connection.prepareCall(SQL_DELETE);
-            callableStatement.setLong(1, dto.getEntidad().getIdEntidadFederativa());
+            callableStatement.setLong(1, dto.getEntidad().getIdMunicipio());
             callableStatement.executeUpdate(); // review
         } finally  {
             if(callableStatement != null){
@@ -86,7 +86,7 @@ public class EntidadFederativaDAO {
     }
     
     
-    public EntidadFederativaDTO read(EntidadFederativaDTO dto) throws SQLException{
+    public MunicipioDTO read(MunicipioDTO dto) throws SQLException{
         getConnection();
         CallableStatement callableStatement = null;
         ResultSet resultSet = null;
@@ -98,7 +98,7 @@ public class EntidadFederativaDAO {
             resultSet = callableStatement.executeQuery();
             List lista = obtenerResultados(resultSet);
             if(lista.size() > 0){
-                return (EntidadFederativaDTO) lista.get(0);
+                return (MunicipioDTO) lista.get(0);
             }else{
                 return null;
             }
@@ -113,7 +113,7 @@ public class EntidadFederativaDAO {
     }
     
     
-    public List readAll() throws SQLException{
+        public List readAll() throws SQLException{
         getConnection();
         CallableStatement callableStatement = null;
         ResultSet resultSet = null;
@@ -140,23 +140,19 @@ public class EntidadFederativaDAO {
             }
         }
     }
-    
-    
+        
+        
     private List obtenerResultados(ResultSet resultSet) throws SQLException {
         List results = new ArrayList();
         
         while(resultSet.next()){
-            EntidadFederativaDTO entidadFederativaDTO = new EntidadFederativaDTO();
-            entidadFederativaDTO.getEntidad().setIdEntidadFederativa(resultSet.getInt("idEntidadFederativa"));
-            entidadFederativaDTO.getEntidad().setNombre(resultSet.getString("nombre"));
-            entidadFederativaDTO.getEntidad().setAbreviatura(resultSet.getString("abreviatura"));
+            MunicipioDTO municipioDTO = new MunicipioDTO();
+            municipioDTO.getEntidad().setIdMunicipio(resultSet.getInt("idMunicipio"));
+            municipioDTO.getEntidad().setIdEntidadFederativa(resultSet.getInt("idEntidadFederativa"));
+            municipioDTO.getEntidad().setNombre(resultSet.getString("nombre"));
         }
-        
         return results;
     }
-    
-    
-    
     
     
 }
