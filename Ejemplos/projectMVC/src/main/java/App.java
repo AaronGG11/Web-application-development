@@ -23,6 +23,8 @@ public class App {
         EntidadFederativaDAO dao = new EntidadFederativaDAO();
         EntidadFederativaDTO dto = new EntidadFederativaDTO();
         
+        
+        
         // Leer banco de datos
             
         dao.create(dto);    
