@@ -221,3 +221,34 @@ create procedure spVerEntidadesFederativas()
     end //
  
 
+ -- Crear procedimientos para Municipio
+
+ create procedure spInsertarMunicipio(
+    idMunicipio int,
+    idEntidadFederativa int,
+    nombre varchar(128)
+    )begin
+        insert into Municipio 
+        values (idMunicipio, idEntidadFederativa, nombre);
+    end //
+
+
+create procedure spBorrarMunicipio(
+    idMunicipio int
+    )begin
+        delete from Municipio where idMunicipio = idMunicipio;
+    end //
+
+
+create procedure spVerMunicipio(
+    idMunicipio int
+    )begin
+        select * from Municipio
+        where idMunicipio = idMunicipio;
+    end //
+
+
+create procedure spVerMunicipios()
+    begin
+        select * from Municipio;
+    end //
