@@ -37,7 +37,7 @@
                     </ul>
                 </div>
             </nav>
-            <table class="table table-sm table-bordered table-striped table-hover ">
+            <table class="table table-sm table-bordered table-hover ">
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col" class="text-center">Clave</th>
@@ -53,7 +53,7 @@
 
                         <tr>
                             <td class="text-center">
-                                <a class="btn btn-primary btn-xs"
+                                <a class="btn"
                                    href="CategoriaServlet?accion=ver&id=<c:out value="${categorias.entidad.idCategoria}"/>">
                                     <c:out value="${categorias.entidad.idCategoria}"/>
                                 </a>
