@@ -1,7 +1,10 @@
 
 import com.escom.wad.model.Categoria;
+import com.escom.wad.model.EntidadFederativa;
 import com.escom.wad.model.dao.CategoriaDAO;
+import com.escom.wad.model.dao.EntidadFederativaDAO;
 import com.escom.wad.model.dto.CategoriaDTO;
+import com.escom.wad.model.dto.EntidadFederativaDTO;
 import java.sql.SQLException;
 
 /*
@@ -16,17 +19,18 @@ import java.sql.SQLException;
  */
 public class App {
     public static void main(String[] args) throws SQLException {
-        CategoriaDTO dto = new CategoriaDTO();
-        CategoriaDAO dao = new CategoriaDAO();
+        // Llenar tabla de entidad federativa
+        EntidadFederativaDAO dao = new EntidadFederativaDAO();
+        EntidadFederativaDTO dto = new EntidadFederativaDTO();
         
-        Categoria entidad = new Categoria();
-        entidad.setIdCategoria(9);
-        entidad.setNombreCategoria("Bebes");
-        entidad.setDescripcionCategoria("Ropa, juguetes");
+        // Leer banco de datos
+            
+        dao.create(dto);    
         
-        dto.setEntidad(entidad);
+            
+        // Llenar tabla de municipios
+            // Leer banco de datos
         
-        dao.update(dto);
         
     }
 }
