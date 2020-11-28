@@ -22,7 +22,6 @@ begin
 end //
 
 
-
 create procedure spActualizarCategoria(
     id int,
     nombre varchar(50),
@@ -74,10 +73,6 @@ show procedure status;
 show function status;
 
 
-
-
-
-
 -- Crear tablas usuario, entidad federativa, producto y municipio
 
 use WAD;
@@ -116,5 +111,69 @@ create table Municipio(
     on delete cascade on update cascade
 );
 
+
+-- Crear procedimimientos para relacion Usuario
+
+delimiter // 
+
+
+create procedure spInsertarUsuario(
+    nombre varchar(50),
+    paterno varchar(50),
+    materno varchar(50),
+    email varchar(80),
+    nombreUsuario varchar(20),
+    claveUsuario varchar(20),
+    tipoUsuario varchar(20)
+    )begin
+        insert into Usuario(nombre, paterno, materno, email, nombreUsuario, claveUsuario, tipoUsuario)
+        values(nombre, paterno, materno, email, nombreUsuario, claveUsuario, tipoUsuario);
+    end //
+
+
+create procedure spActualizarUsuario(
+    nombre varchar(50),
+    paterno varchar(50),
+    materno varchar(50),
+    email varchar(80),
+    nombreUsuario varchar(20),
+    claveUsuario varchar(20),
+    tipoUsuario varchar(20),
+    idUsuario int
+    )begin
+        update Usuario set 
+        nombre = nombre, paterno = paterno, materno = materno, email = email,
+        nombreUsuario = nombreUsuario, claveUsuario = claveUsuario, tipoUsuario = tipoUsuario
+        where idUsuario = idUsuario;
+    end //
+
+
+create procedure spBorrarUsuario(
+    idUsuario int
+    )begin
+        delete from Usuario where idUsuario = idUsuario;
+    end //
+
+
+create procedure spVerUsuario(
+    idUsuario int
+    )begin
+        select * from Usuario 
+        where idUsuario = idUsuario;
+    end //
     
 
+create procedure spMostrarUsuarios()
+    begin
+        select * from Usuario;
+    end //
+
+
+create procedure spLogin(
+    nombreUsuario varchar(20),
+    claveUsuario varchar(20)
+    )begin
+        select * from Usuario
+        where nombreUsuario = nombreUsuario 
+        and claveUsuario = claveUsuario;
+    end //
