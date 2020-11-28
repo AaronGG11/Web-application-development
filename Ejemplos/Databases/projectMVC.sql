@@ -186,3 +186,38 @@ delimiter ;
 call spInsertarUsuario("Aaron", "Garcia", "Gonzalez", "aaron.eng99@gmail.com", "AaronGarcia", "rootroot", "administrador");
 call spLogin("AaronGarcia", "rootroot");
 call spLogin("AaronGarcia", "algoalgo");
+
+
+-- Crear procedimientos para EntidadFederativa
+delimiter //
+
+create procedure spInsertarEntidadFederativa(
+    idEntidadFederativa int,
+    nombre varchar(50),
+    abreviatura char(5)
+    )begin
+        insert into EntidadFederativa
+        values (idEntidadFederativa, nombre, abreviatura);
+    end //
+
+
+create procedure spBorrarEntidadFederativa(
+    idEntidadFederativa int
+    )begin
+        delete from EntidadFederativa where idEntidadFederativa = idEntidadFederativa;
+    end //
+
+
+create procedure spVerEntidadFederativa(
+    idEntidadFederativa int
+    )begin
+        select * from EntidadFederativa where idEntidadFederativa = EntidadFederativa;
+    end //
+
+
+create procedure spVerEntidadesFederativas()
+    begin
+    select * from EntidadFederativa;
+    end //
+ 
+
