@@ -130,7 +130,6 @@ public class MunicipioDAO {
                 return null;
             }
             
-            
         } finally  {
             if(callableStatement != null){
                 callableStatement.close();
