@@ -170,10 +170,19 @@ create procedure spMostrarUsuarios()
 
 
 create procedure spLogin(
-    nombreUsuario varchar(20),
-    claveUsuario varchar(20)
+    nombre varchar(20),
+    clave varchar(20)
     )begin
         select * from Usuario
-        where nombreUsuario = nombreUsuario 
-        and claveUsuario = claveUsuario;
+        where nombreUsuario like nombre and claveUsuario like clave; -- en la misma linea
     end //
+
+
+drop procedure if exists spLogin;
+
+-- Probando procedimientos 
+delimiter ;
+
+call spInsertarUsuario("Aaron", "Garcia", "Gonzalez", "aaron.eng99@gmail.com", "AaronGarcia", "rootroot", "administrador");
+call spLogin("AaronGarcia", "rootroot");
+call spLogin("AaronGarcia", "algoalgo");
