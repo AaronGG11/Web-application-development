@@ -18,7 +18,6 @@ create procedure spInsertarCategoria(
 begin 
     insert into Categoria(nombreCategoria,descripcionCategoria) 
     values(nombre,descripcion);
-
 end //
 
 
@@ -30,7 +29,6 @@ begin
     update Categoria set 
     nombreCategoria = nombre, descripcionCategoria = descripcion
     where idCategoria = id;
-
 end //
 
 
@@ -38,7 +36,6 @@ create procedure spBorrarCategoria(
     id int)
 begin
     delete from Categoria where idCategoria = id;
-
 end //
 
 
