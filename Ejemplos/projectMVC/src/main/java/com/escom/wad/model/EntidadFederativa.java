@@ -23,9 +23,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @Builder
 
-
 public class EntidadFederativa implements Serializable{
     private Integer idEntidadFederativa;
-    private String nombre;
     private String abreviatura;
+    private String nombre;
 }
