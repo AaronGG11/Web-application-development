@@ -252,3 +252,17 @@ create procedure spVerMunicipios()
     begin
         select * from Municipio;
     end //
+
+
+-- Crear vistas
+-- Vista con todos los atributos de estado y el nuemro de municipios asoicados
+
+create view vista_municipios_por_estado as 
+    select e.idEntidadFederativa as Id_estado, e.nombre as Nombre_de_estado, count(*) as Total_de_municipios
+    from EntidadFederativa e, Municipio m 
+    where e.idEntidadFederativa=m.idEntidadFederativa
+    group by e.idEntidadFederativa
+    order by Total_de_municipios desc;
+
+select * from vista_municipios_por_estado;
+drop view vista_municipios_por_estado;
