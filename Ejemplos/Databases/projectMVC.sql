@@ -100,9 +100,10 @@ create table Producto(
 );
 
 create table Municipio(
-    idMunicipio int not null primary key,
-    idEntidadFederativa int,
+    idMunicipio int not null,
+    idEntidadFederativa int not null,
     nombre varchar(128),
+    primary key(idMunicipio, idEntidadFederativa),
     foreign key(idEntidadFederativa) 
     references EntidadFederativa(idEntidadFederativa)
     on delete cascade on update cascade
