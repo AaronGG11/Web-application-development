@@ -100,7 +100,7 @@ create table Producto(
 );
 
 create table Municipio(
-    idMunicipio int not null,
+    idMunicipio int not null primary key,
     idEntidadFederativa int,
     nombre varchar(128),
     foreign key(idEntidadFederativa) 
@@ -263,3 +263,21 @@ create view vista_municipios_por_estado as
 
 select * from vista_municipios_por_estado;
 drop view vista_municipios_por_estado;
+
+
+-- Creando relacion intermedia entre municipio y entidad federativa (opcional)
+
+create table EntidadFederativaMunicipio(
+    idEntidadFederativa int not null,
+    idMunicipio int not null,
+    primary key(idEntidadFederativa, idMunicipio),
+    foreign key(idEntidadFederativa) 
+    references EntidadFederativa(idEntidadFederativa)
+    on delete cascade on update cascade,
+    foreign key(idMunicipio) 
+    references Municipio(idMunicipio)
+    on delete cascade on update cascade
+);
+
+
+-- Creando triggers para EntidadFederativaMunicipio

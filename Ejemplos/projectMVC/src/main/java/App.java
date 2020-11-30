@@ -44,8 +44,8 @@ public class App {
         path_municipios.append("municipios.json");
         
         // Control de ejecucion
-        Boolean llenar_estados = Boolean.FALSE;
-        Boolean llenar_municipios = Boolean.FALSE;
+        Boolean llenar_estados = Boolean.TRUE;
+        Boolean llenar_municipios = Boolean.TRUE;
         
         ArrayList<String> nombres_estados = new ArrayList<>();
         
