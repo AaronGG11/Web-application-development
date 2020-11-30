@@ -2,4 +2,9 @@ mysql -u root -p
 /usr/local/mysql/bin/mysql -u root -p
 
 show procedure status;
+
 psql -U postgres 
+\list
+\connect database_name;
+CREATE DATABASE database_name;
+DROP DATABASE database_name;
