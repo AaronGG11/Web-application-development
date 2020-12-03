@@ -6,7 +6,7 @@
 package com.escom.wad.model.dao;
 
 import com.escom.wad.model.dto.CategoriaDTO;
-import com.mysql.cj.jdbc.CallableStatement;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;

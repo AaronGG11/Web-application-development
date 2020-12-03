@@ -5,3 +5,4 @@
 /Ejemplos/BaseProject/target/
 /Ejemplos/projectMVC/target/
 .DS_Store
+node_modules/
