@@ -92,7 +92,7 @@ public class CategoriaDAO {
     public void update(CategoriaDTO dto) throws SQLException{
         getConnection();
         CallableStatement callableStatement = null;
-        
+            
         try {
             callableStatement = (CallableStatement) connection.prepareCall(SQL_UPDATE);
             callableStatement.setString(1, dto.getEntidad().getNombreCategoria());
