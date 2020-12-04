@@ -6,11 +6,15 @@
 package com.escom.wad.controller;
 
 import com.escom.wad.model.dao.CategoriaDAO;
+import com.escom.wad.model.dao.GraficaDAO;
 import com.escom.wad.model.dto.CategoriaDTO;
+import com.escom.wad.model.dto.GraficaDTO;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -19,6 +23,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartUtils;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.general.DefaultPieDataset;
+import org.jfree.data.general.PieDataset;
 
 /**
  *
@@ -60,6 +69,9 @@ public class CategoriaServlet extends HttpServlet {
                 break;
             case "ver":
                 mostrarcategoria(request, response);
+                break;
+            case "graficar":
+                graficar(request, response);
                 break;
             default:
                 break;
@@ -198,6 +210,43 @@ public class CategoriaServlet extends HttpServlet {
         } catch (SQLException | ServletException | IOException ex) {
             Logger.getLogger(CategoriaServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    private void graficar(HttpServletRequest request, HttpServletResponse response) {
+        JFreeChart grafica = ChartFactory.createPieChart3D(
+                "Productos por categoria", getGraficaProductos(), true, true, Locale.getDefault());
+        
+        // true #1 -> leyendas
+       // true #2 -> tooltip
+        
+        String archivo = getServletConfig().getServletContext().getRealPath("/grafica.png"); // al momento de crearlo 
+        try {
+            ChartUtils.saveChartAsPNG(new File(archivo), grafica, 500, 500);
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("grafica.jsp");
+            requestDispatcher.forward(request, response);
+
+        } catch (IOException | ServletException ex) {
+            Logger.getLogger(CategoriaServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private PieDataset getGraficaProductos() {
+        DefaultPieDataset pieDataset = new DefaultPieDataset();
+        
+        GraficaDAO dao = new GraficaDAO();
+        
+        try {
+            List datos = dao.grafica();
+            for (int i = 0; i < datos.size(); i++) {
+                GraficaDTO dto = (GraficaDTO)datos.get(i);
+                pieDataset.setValue(dto.getNombre(), dto.getCantidad());
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(CategoriaServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return pieDataset;
     }
 
 }

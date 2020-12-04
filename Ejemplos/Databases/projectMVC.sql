@@ -298,3 +298,12 @@ create table Categoria(
 insert into Categoria values (1,'Ropa de hombre', 'Pantalon, camisa, sacos, ropa ejecutiva, ropa interior, ropa deportiva');
 insert into Categoria values (2, 'Telefonia', 'Libres, Por operadora, accesorios, telefonia fija');
 insert into Categoria values (3, 'Computo', 'Equipos de cómputo de última generación');
+
+
+create table Producto( -- modificar
+    idProducto serial primary key,
+    nombreProducto varchar(50) not null,
+    descripcionProdcuto varchar(256) not null,
+    precioProducto int not null,
+    existenciaProducto int not null
+);
