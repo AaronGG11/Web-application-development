@@ -282,3 +282,19 @@ create table EntidadFederativaMunicipio(
 
 
 -- Creando triggers para EntidadFederativaMunicipio
+
+
+
+
+
+
+-- SCRIPT PARA POSTGRES SQL
+create table Categoria(
+    idCategoria serial primary key,
+    nombreCategoria varchar(50) not null,
+    descripcionCategoria varchar(200) not null
+);
+
+insert into Categoria values (1,'Ropa de hombre', 'Pantalon, camisa, sacos, ropa ejecutiva, ropa interior, ropa deportiva');
+insert into Categoria values (2, 'Telefonia', 'Libres, Por operadora, accesorios, telefonia fija');
+insert into Categoria values (3, 'Computo', 'Equipos de cómputo de última generación');

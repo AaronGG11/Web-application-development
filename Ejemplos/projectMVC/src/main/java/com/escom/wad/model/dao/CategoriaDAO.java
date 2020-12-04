@@ -28,27 +28,41 @@ public class CategoriaDAO {
     // Define quries
     
     // By specification
-    private static final String SQL_INSERT = "{call spInsertarCategoria(?,?)}";
-    private static final String SQL_UPDATE = "{call spActualizarCategoria(?,?,?)}";
-    private static final String SQL_DELETE = "{call spBorrarCategoria(?)}";
-    private static final String SQL_SELECT = "{call spVerCategoria(?)}";
-    private static final String SQL_SELECT_ALL = "{call spMostrarCategorias()}";
+    private static final String SQL_INSERT = "insert into categoria (nombrecategoria, descripcioncategoria) values(?,?)";
+    private static final String SQL_UPDATE = "update categoria set nombrecategoria=?, descripcioncategoria=? where idcategoria=?";
+    private static final String SQL_DELETE = "delete from categoria where idcategoria=?";
+    private static final String SQL_SELECT = "select * from categoria where idcategoria=?";
+    private static final String SQL_SELECT_ALL = "select * from categoria";
     
     private Connection connection;
     
     private void getConnection(){
-        String user = "root";
-            String password = "rootroot";
-            String url = "jdbc:mysql://localhost:3306/WAD?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-            String driverMySql = "com.mysql.cj.jdbc.Driver";
+        String user = "xnqkjayyajynlf";
+            String password = "b4aa424ae3aff39acc4292ed6722c991eea4b9c604064aa7a74d9b51f69f1210";
+            String url = "jdbc:postgresql://ec2-23-22-156-110.compute-1.amazonaws.com:5432/d5efdn4q82rse3?sslmode=require";
+            String driverSql = "org.postgresql.Driver";
             
         try {
-            Class.forName(driverMySql);
+            Class.forName(driverSql);
             connection = DriverManager.getConnection(url, user, password);
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(CategoriaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+//    private void getConnection(){
+//        String user = "postgres";
+//            String password = "rootroot";
+//            String url = "jdbc:postgresql://";
+//            String driverMySql = "org.postgresql.Driver";
+//            
+//        try {
+//            Class.forName(driverMySql);
+//            connection = DriverManager.getConnection(url, user, password);
+//        } catch (ClassNotFoundException | SQLException ex) {
+//            Logger.getLogger(CategoriaDAO.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
     
     
     // alt shift abajo
@@ -81,9 +95,9 @@ public class CategoriaDAO {
         
         try {
             callableStatement = (CallableStatement) connection.prepareCall(SQL_UPDATE);
-            callableStatement.setString(2, dto.getEntidad().getNombreCategoria());
-            callableStatement.setString(3, dto.getEntidad().getDescripcionCategoria());
-            callableStatement.setInt(1, dto.getEntidad().getIdCategoria());
+            callableStatement.setString(1, dto.getEntidad().getNombreCategoria());
+            callableStatement.setString(2, dto.getEntidad().getDescripcionCategoria());
+            callableStatement.setInt(3, dto.getEntidad().getIdCategoria());
             
             callableStatement.executeUpdate();
         } finally  {
