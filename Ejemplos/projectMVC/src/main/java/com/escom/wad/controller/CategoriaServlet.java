@@ -19,10 +19,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperRunManager;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
@@ -72,6 +75,9 @@ public class CategoriaServlet extends HttpServlet {
                 break;
             case "graficar":
                 graficar(request, response);
+                break;
+            case "verpdf":
+                verPDF(request, response);
                 break;
             default:
                 break;
@@ -247,6 +253,24 @@ public class CategoriaServlet extends HttpServlet {
         }
         
         return pieDataset;
+    }
+
+    private void verPDF(HttpServletRequest request, HttpServletResponse response) {
+        CategoriaDAO dao = new CategoriaDAO();
+        try {
+            ServletOutputStream servletOutputStream = response.getOutputStream();
+            File plantilla_reporte = new File(getServletConfig().getServletContext().getRealPath("/reportes/Categorias.jasper")); // directorio base de la app
+            byte[] bytes = JasperRunManager.runReportToPdf(plantilla_reporte.getPath(), null, dao.getConnectionLocal());
+            
+            response.setContentType("application/pdf");
+            response.setContentLength(bytes.length);
+            
+            servletOutputStream.write(bytes,0,bytes.length);
+            servletOutputStream.flush();
+            servletOutputStream.close();
+        } catch (IOException | JRException ex) {
+            Logger.getLogger(CategoriaServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

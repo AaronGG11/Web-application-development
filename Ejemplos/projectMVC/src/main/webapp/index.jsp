@@ -32,6 +32,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="CategoriaServlet?accion=nuevo">Registrar categoria</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="CategoriaServlet?accion=verpdf" target="blank">Ver pdf</a>
+                        </li>
                     </ul>
                 </div>
             </nav>

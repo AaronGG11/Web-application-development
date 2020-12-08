@@ -36,7 +36,7 @@ public class CategoriaDAO {
     
     private Connection connection;
     
-    private void getConnection(){
+    private Connection getConnection(){ // Pendiente a modificar
         String user = "xnqkjayyajynlf";
             String password = "b4aa424ae3aff39acc4292ed6722c991eea4b9c604064aa7a74d9b51f69f1210";
             String url = "jdbc:postgresql://ec2-23-22-156-110.compute-1.amazonaws.com:5432/d5efdn4q82rse3?sslmode=require";
@@ -48,23 +48,27 @@ public class CategoriaDAO {
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(CategoriaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        return connection;
     }
     
-//    private void getConnection(){
-//        String user = "postgres";
-//            String password = "rootroot";
-//            String url = "jdbc:postgresql://";
-//            String driverMySql = "org.postgresql.Driver";
-//            
-//        try {
-//            Class.forName(driverMySql);
-//            connection = DriverManager.getConnection(url, user, password);
-//        } catch (ClassNotFoundException | SQLException ex) {
-//            Logger.getLogger(CategoriaDAO.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
+    public Connection getConnectionLocal(){ // mysql
+        String user = "root";
+            String password = "rootroot";
+            String url = "jdbc:mysql://localhost:3306/WAD?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+            String driverMySql = "com.mysql.cj.jdbc.Driver";
+            
+        try {
+            Class.forName(driverMySql);
+            connection = DriverManager.getConnection(url, user, password);
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(CategoriaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return connection;
+    }
     
-    
+    // cntl al t c
     // alt shift abajo
     // Method definitions
     
