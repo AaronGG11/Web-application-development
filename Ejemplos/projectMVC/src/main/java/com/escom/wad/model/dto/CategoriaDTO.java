@@ -7,11 +7,19 @@ package com.escom.wad.model.dto;
 
 import com.escom.wad.model.Categoria;
 import java.io.Serializable;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  *
  * @author aarongarcia
  */
+
+
+
+@Getter
+@Setter
+
 public class CategoriaDTO implements Serializable{
     // Data transfer object, representa a un modelo de dominio
     private Categoria entidad;
@@ -20,18 +28,6 @@ public class CategoriaDTO implements Serializable{
         entidad = new Categoria();
     }
     
-    public CategoriaDTO(Categoria categoria){
-        entidad = categoria;
-    }
-
-    public Categoria getEntidad() {
-        return entidad;
-    }
-
-    public void setEntidad(Categoria entidad) {
-        this.entidad = entidad;
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

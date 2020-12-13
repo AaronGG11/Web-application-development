@@ -5,10 +5,7 @@
  */
 package com.escom.wad.model;
 
-import java.io.Serializable;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,19 +15,16 @@ import lombok.Setter;
  * @author aarongarcia
  */
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 
-
-public class Usuario implements Serializable{
-    private Integer idUsuario;
-    private String nombre;
-    private String paterno;
-    private String materno;
-    private String email;
-    private String nombreUsuario;
-    private String claveUsuario;
-    private String tipoUsuario; 
+public class Producto {
+    private Integer idProducto;
+    private String nombreProducto;
+    private String descripcionProducto;
+    private Float precio;
+    private Integer existencia;
+    private Integer idCategoria;
 }

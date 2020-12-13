@@ -172,7 +172,7 @@ public class UsuarioDAO {
         
         while(resultSet.next()){
             UsuarioDTO usuarioDTO = new UsuarioDTO();
-            usuarioDTO.getEntidad().setIdUsuario(resultSet.getLong("idUsuario"));
+            usuarioDTO.getEntidad().setIdUsuario(resultSet.getInt("idUsuario"));
             usuarioDTO.getEntidad().setNombre(resultSet.getString("nombre"));
             usuarioDTO.getEntidad().setPaterno(resultSet.getString("paterno"));
             usuarioDTO.getEntidad().setMaterno(resultSet.getString("materno"));

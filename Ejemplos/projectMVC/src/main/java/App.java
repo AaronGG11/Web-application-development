@@ -1,4 +1,5 @@
 
+import com.escom.wad.model.Categoria;
 import com.escom.wad.utileria.EnviarMails;
 
 /*
