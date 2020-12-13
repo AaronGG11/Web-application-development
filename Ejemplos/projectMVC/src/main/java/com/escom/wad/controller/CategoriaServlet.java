@@ -259,7 +259,7 @@ public class CategoriaServlet extends HttpServlet {
         CategoriaDAO dao = new CategoriaDAO();
         try {
             ServletOutputStream servletOutputStream = response.getOutputStream();
-            File plantilla_reporte = new File(getServletConfig().getServletContext().getRealPath("/reportes/Categorias.jasper")); // directorio base de la app
+            File plantilla_reporte = new File(getServletConfig().getServletContext().getRealPath("/reportes/ProdCats.jasper")); // directorio base de la app
             byte[] bytes = JasperRunManager.runReportToPdf(plantilla_reporte.getPath(), null, dao.getConnectionLocal());
             
             response.setContentType("application/pdf");
