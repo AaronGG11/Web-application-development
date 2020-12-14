@@ -10,7 +10,7 @@ producto.idcategoria = categoria.idcategoria group by categoria.idcategoria
 create table Categoria(
 	idCategoria serial primary key,
 	nombreCategoria varchar(50) not null,
-	descripcionCategoria varchar(250) not null
+	descripcionCategoria varchar(500) not null
 );
 ‌
 -- #######################################################

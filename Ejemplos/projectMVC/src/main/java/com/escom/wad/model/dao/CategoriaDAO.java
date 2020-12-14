@@ -36,10 +36,10 @@ public class CategoriaDAO {
     
     private Connection connection;
     
-    private Connection getConnection(){ // Pendiente a modificar
-        String user = "xnqkjayyajynlf";
-            String password = "b4aa424ae3aff39acc4292ed6722c991eea4b9c604064aa7a74d9b51f69f1210";
-            String url = "jdbc:postgresql://ec2-23-22-156-110.compute-1.amazonaws.com:5432/d5efdn4q82rse3?sslmode=require";
+    public Connection getConnection(){ // Pendiente a modificar
+        String user = "tazufdqzewches";
+            String password = "17a8624de0181e5380421d9cbce35d668dc13ac19670613f28fdc2a14558364a";
+            String url = "jdbc:postgresql://ec2-54-157-66-140.compute-1.amazonaws.com:5432/d29b5simejk4r9?sslmode=require";
             String driverSql = "org.postgresql.Driver";
             
         try {

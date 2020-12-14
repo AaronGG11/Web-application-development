@@ -168,8 +168,8 @@ public class UsuarioDAO {
     }
 
     private List obtenerResultados(ResultSet resultSet) throws SQLException {
-        List results = new ArrayList();
-        
+        List results = new ArrayList(); 
+       
         while(resultSet.next()){
             UsuarioDTO usuarioDTO = new UsuarioDTO();
             usuarioDTO.getEntidad().setIdUsuario(resultSet.getInt("idUsuario"));

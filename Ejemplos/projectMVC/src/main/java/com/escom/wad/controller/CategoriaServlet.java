@@ -143,7 +143,7 @@ public class CategoriaServlet extends HttpServlet {
 
         dto.getEntidad().setIdCategoria(Integer.parseInt(request.getParameter("id")));
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("ver.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("verCategoria.jsp");
 
         try {
             dto = dao.read(dto);
@@ -198,7 +198,6 @@ public class CategoriaServlet extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(CategoriaServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     private void actualizarCategoria(HttpServletRequest request, HttpServletResponse response) {
@@ -259,8 +258,8 @@ public class CategoriaServlet extends HttpServlet {
         CategoriaDAO dao = new CategoriaDAO();
         try {
             ServletOutputStream servletOutputStream = response.getOutputStream();
-            File plantilla_reporte = new File(getServletConfig().getServletContext().getRealPath("/reportes/ProdCats.jasper")); // directorio base de la app
-            byte[] bytes = JasperRunManager.runReportToPdf(plantilla_reporte.getPath(), null, dao.getConnectionLocal());
+            File plantilla_reporte = new File(getServletConfig().getServletContext().getRealPath("/reportes/ReporteCategorias_Productos.jasper")); // directorio base de la app
+            byte[] bytes = JasperRunManager.runReportToPdf(plantilla_reporte.getPath(), null, dao.getConnection());
             
             response.setContentType("application/pdf");
             response.setContentLength(bytes.length);
