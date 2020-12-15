@@ -6,10 +6,10 @@
         <property name="connection.driver_class">org.postgresql.Driver</property>
         <!-- JDBC Database connection settings postgres local -->
         <property name="connection.url">
-            jdbc:postgresql://localhost:5432/WAD
+            jdbc:postgresql://ec2-54-157-66-140.compute-1.amazonaws.com:5432/d29b5simejk4r9?sslmode=require
         </property>
-        <property name="connection.username">postgres</property>
-        <property name="connection.password">rootroot</property>
+        <property name="connection.username">tazufdqzewches</property>
+        <property name="connection.password">17a8624de0181e5380421d9cbce35d668dc13ac19670613f28fdc2a14558364a</property>
         
         <!-- JDBC connection pool settings ... using built-in test pool -->
         <property name="connection.pool_size">1</property>
