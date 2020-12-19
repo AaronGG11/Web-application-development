@@ -15,6 +15,7 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -25,6 +26,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperRunManager;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtils;
@@ -78,6 +80,9 @@ public class CategoriaServlet extends HttpServlet {
                 break;
             case "verpdf":
                 verPDF(request, response);
+                break;
+            case "reporteUsuario":
+                reporteUsuario(request, response);
                 break;
             default:
                 break;
@@ -260,6 +265,25 @@ public class CategoriaServlet extends HttpServlet {
             ServletOutputStream servletOutputStream = response.getOutputStream();
             File plantilla_reporte = new File(getServletConfig().getServletContext().getRealPath("/reportes/ReporteCategorias_Productos.jasper")); // directorio base de la app
             byte[] bytes = JasperRunManager.runReportToPdf(plantilla_reporte.getPath(), null, dao.getConnection());
+            
+            response.setContentType("application/pdf");
+            response.setContentLength(bytes.length);
+            
+            servletOutputStream.write(bytes,0,bytes.length);
+            servletOutputStream.flush();
+            servletOutputStream.close();
+        } catch (IOException | JRException ex) {
+            Logger.getLogger(CategoriaServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void reporteUsuario(HttpServletRequest request, HttpServletResponse response) {
+        CategoriaDAO dao = new CategoriaDAO();
+        try {
+           
+            ServletOutputStream servletOutputStream = response.getOutputStream();
+            File plantilla_reporte = new File(getServletConfig().getServletContext().getRealPath("/reportes/CategoriaIndividual.jasper")); // directorio base de la app
+            byte[] bytes = JasperRunManager.runReportToPdf(plantilla_reporte.getPath(), Map.of("ParIDCate",Integer.parseInt(request.getParameter("id"))), dao.getConnection());
             
             response.setContentType("application/pdf");
             response.setContentLength(bytes.length);

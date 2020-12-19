@@ -40,6 +40,7 @@
                     </ul>
                 </div>
             </nav>
+
             <table class="table table-sm table-bordered table-hover ">
                 <thead class="thead-dark">
                     <tr>
@@ -54,33 +55,47 @@
                         var="categorias"
                         items="${listaDeCategorias}">
 
-                        <tr>
-                            <td class="text-center">
+                        <tr >
+                            <th scope="row" class="text-center">
                                 <a class="btn"
                                    href="CategoriaServlet?accion=ver&id=<c:out value="${categorias.entidad.idCategoria}"/>">
                                     <c:out value="${categorias.entidad.idCategoria}"/>
                                 </a>
-                            </td>
+                            </th>
                             <td>
                                 <c:out value="${categorias.entidad.nombreCategoria}"/> <!--  -->
                             </td>
                             <td>
                                 <c:out value="${categorias.entidad.descripcionCategoria}"/> <!--  -->
                             </td>
-                            <td class="text-center">
-                                <a class="btn btn-danger btn-xs"
-                                   href="CategoriaServlet?accion=eliminar&id=<c:out value="${categorias.entidad.idCategoria}"/>">
-                                    <i class='bx bx-trash'></i> 
-                                </a>
-                                <a class="btn btn-warning btn-xs"
-                                   href="CategoriaServlet?accion=actualizar&id=<c:out value="${categorias.entidad.idCategoria}"/>">
-                                    <i class='bx bx-pencil' ></i>
-                                </a>
+                            <td >
+                                <div class="btn-group btn-xs">
+                                    <div class="btn-group">
+                                        <a class="btn btn-outline-danger btn-xs"
+                                           href="CategoriaServlet?accion=eliminar&id=<c:out value="${categorias.entidad.idCategoria}"/>">
+                                            <i class='bx bx-trash'></i> 
+                                        </a>
+                                    </div>
+                                    <div class="btn-group">
+                                        <a class="btn btn-outline-warning btn-xs"
+                                           href="CategoriaServlet?accion=actualizar&id=<c:out value="${categorias.entidad.idCategoria}"/>">
+                                            <i class='bx bx-pencil' ></i>
+                                        </a>
+                                    </div>
+                                    <div class="btn-group">
+                                        <a class="btn btn-outline-info btn-xs"
+                                           href="CategoriaServlet?accion=reporteUsuario&id=<c:out value="${categorias.entidad.idCategoria}"/>">
+                                            <i class='bx bxs-report'></i>
+                                        </a>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                     </c:forEach>
                 </tbody>
             </table>
+
+
         </div>
 
 
