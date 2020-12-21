@@ -171,3 +171,84 @@ insert into Usuario (nombre,paterno,materno,email,nombreUsuario,claveUsuario,tip
 
 insert into Usuario (nombre,paterno,materno,email,nombreUsuario,claveUsuario,tipoUsuario) values
     ('Arnold', 'Gomez', 'Preciado', 'aarongarcia.ipn.escom@gmail.com', 'ArnoldGP', 'ArnoldGP', 'empleado');
+
+
+
+
+-- #######################################################
+-- Procedimientos almacenados ------------ USUARIOS
+-- #######################################################
+
+create or replace procedure spInsertarUsuario(
+	nombre varchar,
+	paterno varchar,
+	materno varchar,
+	email varchar,
+	nombreUsuario varchar,
+	claveUsuario varchar,
+	tipoUsuario varchar,
+	imagen varchar)
+	LANGUAGE SQL
+	as $$
+	insert into usuario (nombre,paterno,materno,email,nombreUsuario,claveUsuario,tipoUsuario,imagen) 
+	values (nombre,paterno,materno,email,nombreUsuario,claveUsuario,tipoUsuario,imagen);
+$$;
+
+
+create or replace procedure spActualizarUsuario(
+	nombre varchar,
+	paterno varchar,
+	materno varchar,
+	email varchar,
+	nombreUsuario varchar,
+	claveUsuario varchar,
+	tipoUsuario varchar,
+	imagen varchar,
+	idUsuario bigint)
+LANGUAGE SQL
+as $$
+	update usuario set
+		nombre = nombre,
+		paterno = paterno,
+		materno = materno,
+		email = email,
+		nombreUsuario = nombreUsuario,
+		claveUsuario = claveUsuario,
+		tipoUsuario = tipoUsuario,
+		imagen = imagen
+	where idUsuario = coalesce(idUsuario, (select nextval('serial')));
+$$;
+
+-- listar procedimientos
+SELECT  proname, prosrc
+FROM    pg_catalog.pg_namespace n
+JOIN    pg_catalog.pg_proc p
+ON      pronamespace = n.oid
+WHERE   nspname = 'public';
+
+
+
+
+call spInsertarUsuario('Pancho', 'Perez', 'Craft', 'pperez34@gmail.com', 'PPerez', 'PPerez', 'empleado', 'TODO.png');
+call spActualizarUsuario('Pancho', 'Perez', 'Martinez', 'pperez34@gmail.com', 'PPerez', 'PPerez', 'empleado', 'TODO.png', 6);
+
+
+update usuario set
+		nombre = 'Pancho',
+		paterno = 'Perez',
+		materno = 'Martinez',
+		email = 'pperez34@gmail.com',
+		nombreUsuario = 'PPerez',
+		claveUsuario = 'PPerez',
+		tipoUsuario = 'empleado',
+		imagen = 'TODO.png'
+	where idUsuario = 6;
+
+
+delete from usuario where idUsuario = 6;
+select * from usuario where idUsuario = 3;
+
+-- SQL_FIND_BY_USERNAME_AND_PASSWORD
+select * from usuario 
+    where nombreUsuario = "AaronGG11"
+    and claveUsuario = "AaronGG11";
