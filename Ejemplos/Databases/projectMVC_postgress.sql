@@ -38,7 +38,9 @@ CREATE TABLE Usuario (
   email varchar(50) NOT NULL,
   nombreUsuario varchar(20) NOT NULL,
   claveUsuario varchar(20) NOT null,
-  tipoUsuario varchar(20));
+  tipoUsuario varchar(20),
+  imagen varchar(256)
+  );
 
 
 
