@@ -29,7 +29,6 @@ public class AdminController {
     @Autowired
     private StateService stateService;
 
-
     @GetMapping(value="/admin/productlist")
     public ModelAndView producList(){
         ModelAndView modelAndView = new ModelAndView();
@@ -47,7 +46,7 @@ public class AdminController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
         modelAndView.addObject("states", stateService.findAllStates());
-        modelAndView.setViewName("admin/form");
+        modelAndView.setViewName("admin/product_form");
 
         return modelAndView;
     }
@@ -60,22 +59,4 @@ public class AdminController {
 
         return modelAndView;
     }
-
-    @GetMapping("/admin/getTowns")
-    public @ResponseBody String getStates(@RequestParam Integer countryId)
-    {
-        String json = null;
-
-        List<Object[]> list = stateService.getTownsByState(countryId);
-        System.out.println(list);
-        try {
-            json = new ObjectMapper().writeValueAsString(list);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        return json;
-    }
-
-
-
 }
