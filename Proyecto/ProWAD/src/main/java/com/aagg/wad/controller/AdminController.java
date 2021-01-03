@@ -39,19 +39,7 @@ public class AdminController {
         return modelAndView;
     }
 
-
     @GetMapping(value = "/admin/formProduct")
-    public ModelAndView index(ModelMap modelMap) {
-        ModelAndView modelAndView = new ModelAndView();
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-
-        modelAndView.addObject("states", stateService.findAllStates());
-        modelAndView.setViewName("admin/product_form");
-
-        return modelAndView;
-    }
-
-    @GetMapping(value = "/admin/productTest")
     public ModelAndView showPage() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("stateList", stateService.findAllStates());
