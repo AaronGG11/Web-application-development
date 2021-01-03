@@ -41,41 +41,44 @@
             <p>Fill the form, please</p>
         </div>
 
-        <form th:action="@{/admin/saveProduct}" th:object="${product}"
-              method="post" role="form" class="container">
+        <form autocomplete="off" action="#"
+              th:action="@{/admin/saveProduct}"
+              th:object="${product}"
+              method="post" class="container" role="form">
+
             <div class="form-group row">
                 <label for="txtname" class="col-sm-2 col-form-label">Name: </label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="txtname" name="txtname" placeholder="product name" th:object="${name}">
+                    <input type="text" class="form-control" id="txtname" name="txtname" placeholder="product name" th:field="*{name}">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="txtdescription" class="col-sm-2 col-form-label">Description: </label>
                 <div class="col-sm-10">
-                    <textarea class="form-control" id="txtdescription"  name="txtdescription" rows="3" placeholder="product description" th:object="${description}"></textarea>
+                    <textarea class="form-control" id="txtdescription"  name="txtdescription" rows="3" placeholder="product description" th:field="*{description}"></textarea>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="numcost" class="col-sm-2 col-form-label">Cost: </label>
                 <div class="col-sm-10">
-                    <input type="number" class="form-control" id="numcost" name="numcost" placeholder="product cost" th:object="${cost}">
+                    <input type="number" class="form-control" id="numcost" name="numcost" placeholder="product cost" th:field="*{cost}">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="numstock" class="col-sm-2 col-form-label">Stock: </label>
                 <div class="col-sm-10">
-                    <input type="number" class="form-control" id="numstock" name="numstock" placeholder="product stock" th:object="${stock}">
+                    <input type="number" class="form-control" id="numstock" name="numstock" placeholder="product stock" th:field="*{stock}">
                 </div>
             </div>
 
 
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label" for="bolavailability">Availability: </label>
+                <label class="col-sm-2 col-form-label" >Availability: </label>
                 <div class="col-sm-10">
-                    <select class="form-control" id="bolavailability" name="bolavailability">
-                        <option value="" selected disabled>Choose</option>
-                        <option value=1>True</option>
-                        <option value=0>False</option>
+                    <select class="form-control"  th:field="*{availability}">
+                        <option value="" selected disabled>Choose option</option>
+                        <option value="1">True</option>
+                        <option value="0">False</option>
                     </select>
                 </div>
             </div>
@@ -102,11 +105,6 @@
                     </select>
                 </div>
             </div>
-
-
-
-
-
 
         <div class="form-group row">
             <div class="col-sm-12">

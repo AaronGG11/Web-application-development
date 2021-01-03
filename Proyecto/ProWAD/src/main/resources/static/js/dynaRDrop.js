@@ -1,7 +1,7 @@
 $(document).ready(function() {
    $("#states").change(function() {
       var stateId = $(this).val();
-      var s = '<option value="" selected disabled>Choose state</option>';
+      var s = '<option value="" selected disabled>Choose town</option>';
       if (stateId > 0) {
       	$.ajax({
         url : 'getTowns',

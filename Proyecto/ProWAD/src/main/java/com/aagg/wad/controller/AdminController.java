@@ -14,9 +14,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
@@ -40,7 +42,7 @@ public class AdminController {
     }
 
     @GetMapping(value = "/admin/formProduct")
-    public ModelAndView showPage() {
+    public ModelAndView showPage(@ModelAttribute("product") Product product) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("stateList", stateService.findAllStates());
         modelAndView.setViewName("admin/product_form");
@@ -62,5 +64,19 @@ public class AdminController {
         }
         return json;
     }
+
+    @PostMapping(value = "/admin/saveProduct")
+    public ModelAndView createNewProduct(@Valid Product product, BindingResult bindingResult) {
+        ModelAndView modelAndView = new ModelAndView();
+
+        System.out.println(product);
+        productService.saveProduct(product);
+
+
+        modelAndView.addObject("productos", productService.findAllProducts());
+        modelAndView.setViewName("admin/product_list");
+        return modelAndView;
+    }
+
 
 }
