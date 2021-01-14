@@ -7,6 +7,8 @@ package com.escom.wad.model.dto;
 
 import com.escom.wad.model.Categoria;
 import java.io.Serializable;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,6 +21,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
+@Data
+@AllArgsConstructor
 
 public class CategoriaDTO implements Serializable{
     // Data transfer object, representa a un modelo de dominio

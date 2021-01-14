@@ -5,7 +5,9 @@
  */
 package com.escom.wad.model.dao;
 
+import com.escom.wad.model.Categoria;
 import com.escom.wad.model.dto.CategoriaDTO;
+import com.escom.wad.utileria.HibernateUtil;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -19,21 +21,16 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 /**
  *
  * @author aarongarcia
  */
 public class CategoriaDAO {
-    // Define quries
-    
-    // By specification
-    private static final String SQL_INSERT = "insert into categoria (nombrecategoria, descripcioncategoria) values(?,?)";
-    private static final String SQL_UPDATE = "update categoria set nombrecategoria=?, descripcioncategoria=? where idcategoria=?";
-    private static final String SQL_DELETE = "delete from categoria where idcategoria=?";
-    private static final String SQL_SELECT = "select * from categoria where idcategoria=?";
-    private static final String SQL_SELECT_ALL = "select * from categoria";
-    
     private Connection connection;
     
     public Connection getConnection(){ // Pendiente a modificar
@@ -74,143 +71,117 @@ public class CategoriaDAO {
     
     
     public void create(CategoriaDTO dto) throws SQLException{
-        getConnection();
-        CallableStatement callableStatement = null;
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction transaction = session.getTransaction();
         
-        try {
-            callableStatement = (CallableStatement) connection.prepareCall(SQL_INSERT);
-            callableStatement.setString(1, dto.getEntidad().getNombreCategoria());
-            callableStatement.setString(2, dto.getEntidad().getDescripcionCategoria());
-            callableStatement.executeUpdate(); // review
-        } finally  {
-            if(callableStatement != null){
-                callableStatement.close();
+        try{
+            transaction.begin();
+            session.save(dto.getEntidad());
+            
+            transaction.commit();
+        }catch(HibernateException hibernateException){
+            if(transaction != null && transaction.isActive()){
+                transaction.rollback(); // haces todo o haces nada 
             }
-            if(connection != null){
-                connection.close();
-            }
+        }finally{ // liberar recursos
+            
         }
     }
+   
     
     
     public void update(CategoriaDTO dto) throws SQLException{
-        getConnection();
-        CallableStatement callableStatement = null;
-            
-        try {
-            callableStatement = (CallableStatement) connection.prepareCall(SQL_UPDATE);
-            callableStatement.setString(1, dto.getEntidad().getNombreCategoria());
-            callableStatement.setString(2, dto.getEntidad().getDescripcionCategoria());
-            callableStatement.setInt(3, dto.getEntidad().getIdCategoria());
-            
-            callableStatement.executeUpdate();
-        } finally  {
-            if(callableStatement != null){
-                callableStatement.close();
-            }
-            if(connection != null){
-                connection.close();
-            }
-        }
-    }
-    
-    public void delete(CategoriaDTO dto) throws SQLException{
-        getConnection();
-        CallableStatement callableStatement = null;
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction transaction = session.getTransaction();
         
-        try {
-            callableStatement = (CallableStatement) connection.prepareCall(SQL_DELETE);
-            callableStatement.setInt(1, dto.getEntidad().getIdCategoria());
-            callableStatement.executeUpdate();
-        } finally  {
-            if(callableStatement != null){
-                callableStatement.close();
+        try{
+            transaction.begin();
+            
+            session.update(dto.getEntidad());
+            
+            transaction.commit();
+        }catch(HibernateException hibernateException){
+            if(transaction != null && transaction.isActive()){
+                transaction.rollback(); // haces todo o haces nada 
             }
-            if(connection != null){
-                connection.close();
+        }finally{ // liberar recursos
+            
+        } 
+
+    }
+   
+   
+    public void delete(CategoriaDTO dto) throws SQLException{
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction transaction = session.getTransaction();
+        
+        try{
+            transaction.begin();
+            
+            session.delete(dto.getEntidad());
+            
+            transaction.commit();
+        }catch(HibernateException hibernateException){
+            if(transaction != null && transaction.isActive()){
+                transaction.rollback(); // haces todo o haces nada 
             }
+        }finally{ // liberar recursos
+            
         }
     }
     
     public CategoriaDTO read(CategoriaDTO dto) throws SQLException{
-        getConnection();
-        CallableStatement callableStatement = null;
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction transaction = session.getTransaction();
         
-        ResultSet rs = null;
-        try {
-            callableStatement = (CallableStatement) connection.prepareCall(SQL_SELECT);
-            callableStatement.setInt(1, dto.getEntidad().getIdCategoria());
+        try{
+            transaction.begin();
             
-            rs = callableStatement.executeQuery();
+            dto.setEntidad(session.get(dto.getEntidad().getClass(), dto.getEntidad().getIdCategoria()));
+            dto.setEntidad(dto.getEntidad());
             
-            List results = getResults(rs);
+            transaction.commit();
+        }catch(HibernateException hibernateException){
+            if(transaction != null && transaction.isActive()){
+                transaction.rollback(); // haces todo o haces nada 
+            }
+        }finally{ // liberar recursos
             
-            if(results.size() > 0){
-                return (CategoriaDTO) results.get(0);
-            }else{
-                return null;
-            }
-            
-        } finally  {
-            if(rs != null){
-                rs.close();
-            }
-            if(callableStatement != null){
-                callableStatement.close();
-            }
-            if(connection != null){
-                connection.close();
-            }
         }
+        
+        return dto;
         
     }
     
     
     public List readAll() throws SQLException{
-        getConnection();
-        CallableStatement callableStatement = null;
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction transaction = session.getTransaction();
+        List lista = new ArrayList();
         
-        ResultSet rs = null;
-        try {
-            callableStatement = (CallableStatement) connection.prepareCall(SQL_SELECT_ALL);
-            rs = callableStatement.executeQuery();
+        try{
+            transaction.begin();
             
-            List results = getResults(rs);
-            
-            if(results.size() > 0){
-                return results;
-            }else{
-                return null;
+            Query query = session.createQuery("from Categoria c order by c.IdCategoria");
+            for (Categoria c : (List<Categoria>)query.list()) {  
+                CategoriaDTO dto = new CategoriaDTO();
+                dto.setEntidad(c);
+                lista.add(dto);
             }
             
-        } finally  {
-            if(rs != null){
-                rs.close();
+            transaction.commit();
+        }catch(HibernateException hibernateException){
+            if(transaction != null && transaction.isActive()){
+                transaction.rollback(); // haces todo o haces nada 
             }
-            if(callableStatement != null){
-                callableStatement.close();
-            }
-            if(connection != null){
-                connection.close();
-            }
+        }finally{ // liberar recursos
+            
         }
+        
+        return lista;
     }
     
     
-    private List getResults(ResultSet rs) throws SQLException{
-        List results = new ArrayList();
-        
-        while(rs.next()){
-            CategoriaDTO categoriaDTO = new CategoriaDTO();
-            categoriaDTO.getEntidad().setIdCategoria(rs.getInt("idCategoria"));
-            categoriaDTO.getEntidad().setNombreCategoria(rs.getString("nombreCategoria"));
-            categoriaDTO.getEntidad().setDescripcionCategoria(rs.getString("descripcionCategoria"));
-            
-            results.add(categoriaDTO);
-        }
-        
-        return results;
-    }
     
     
 }
