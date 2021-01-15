@@ -21,6 +21,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import org.apache.taglibs.standard.tag.common.sql.DataSourceUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -32,7 +34,7 @@ import org.hibernate.query.Query;
  */
 public class CategoriaDAO {
     // Define quries
-    
+ 
     // By specification
     private static final String SQL_INSERT = "insert into categoria (nombrecategoria, descripcioncategoria) values(?,?)";
     private static final String SQL_UPDATE = "update categoria set nombrecategoria=?, descripcioncategoria=? where idcategoria=?";
@@ -161,7 +163,7 @@ public class CategoriaDAO {
     }
     
     public List readAll() throws SQLException{
-Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction transaction = session.getTransaction();
         List lista = new ArrayList();
         
@@ -185,6 +187,11 @@ Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         }
         
         return lista;
+    }
+    
+    public void getConnectionToReports(){
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction transaction = session.getTransaction();
     }
 
         

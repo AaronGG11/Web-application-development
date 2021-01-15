@@ -27,6 +27,7 @@ import lombok.Setter;
 @NoArgsConstructor
 
 @Entity 
+@SuppressWarnings("serial")
 @Table(name = "Categoria", schema = "public")
 public class Categoria implements Serializable{
     @Id

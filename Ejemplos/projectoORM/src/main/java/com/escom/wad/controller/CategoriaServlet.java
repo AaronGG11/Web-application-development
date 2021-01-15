@@ -41,12 +41,24 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.general.PieDataset;
 
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+
 /**
  *
  * @author aarongarcia
  */
 @WebServlet(name = "CategoriaServlet", urlPatterns = {"/CategoriaServlet"})
 public class CategoriaServlet extends HttpServlet {
+    
+    private JRBeanCollectionDataSource dataSource;
+    
+    public JRBeanCollectionDataSource getDataSource() {
+	return dataSource;
+    }
+
+    public void setDataSource(JRBeanCollectionDataSource dataSource) {
+		this.dataSource = dataSource;
+    }
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -294,7 +306,7 @@ public class CategoriaServlet extends HttpServlet {
         try {
             ServletOutputStream servletOutputStream = response.getOutputStream();
             File plantilla_reporte = new File(getServletConfig().getServletContext().getRealPath("/reportes/CategoriaIndividual.jasper")); // directorio base de la app
-            byte[] bytes = JasperRunManager.runReportToPdf(plantilla_reporte.getPath(), parametros, dao.getConnection());
+            byte[] bytes = JasperRunManager.runReportToPdf(plantilla_reporte.getPath(), parametros, dataSource);
             
             response.setContentType("application/pdf");
             response.setContentLength(bytes.length);
