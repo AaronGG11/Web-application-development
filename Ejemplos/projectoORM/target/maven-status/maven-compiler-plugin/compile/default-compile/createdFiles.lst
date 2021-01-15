@@ -15,5 +15,4 @@ com/escom/wad/model/dao/UsuarioDAO.class
 com/escom/wad/model/Usuario.class
 com/escom/wad/utileria/EnviarMails.class
 com/escom/wad/controller/UserServlet.class
-com/escom/wad/controller/UsuarioServlet.class
 com/escom/wad/utileria/HibernateUtil.class

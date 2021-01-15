@@ -252,7 +252,7 @@ public class UserServlet extends HttpServlet {
         try {
             ServletOutputStream servletOutputStream = response.getOutputStream();
             File plantilla_reporte = new File(getServletConfig().getServletContext().getRealPath("/reportes/ReporteUsuarios.jasper")); // directorio base de la app
-            byte[] bytes = JasperRunManager.runReportToPdf(plantilla_reporte.getPath(), null, dao.getConnection());
+            byte[] bytes = JasperRunManager.runReportToPdf(plantilla_reporte.getPath(), null, dataSource);
             
             response.setContentType("application/pdf");
             response.setContentLength(bytes.length);
