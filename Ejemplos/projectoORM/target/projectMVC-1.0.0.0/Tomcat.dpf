@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/projectMVC">
+  <ResourceLink global="jdbc/3cm9" name="jdbc/3cm9" type="javax.sql.DataSource"/>
+</Context>
