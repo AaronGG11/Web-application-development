@@ -285,5 +285,4 @@ public class UserServlet extends HttpServlet {
             Logger.getLogger(CategoriaServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
 }
