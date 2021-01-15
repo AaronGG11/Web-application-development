@@ -25,8 +25,14 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 
+@Entity 
+@SuppressWarnings("serial")
+@Table(name = "Producto", schema = "public")
 public class Producto {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idProducto;
+    
     private String nombreProducto;
     private String descripcionProducto;
     private Float precio;

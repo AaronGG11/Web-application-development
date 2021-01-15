@@ -34,7 +34,7 @@ import org.hibernate.query.Query;
  */
 public class CategoriaDAO {
     // Define quries
- 
+  
     // By specification
     private static final String SQL_INSERT = "insert into categoria (nombrecategoria, descripcioncategoria) values(?,?)";
     private static final String SQL_UPDATE = "update categoria set nombrecategoria=?, descripcioncategoria=? where idcategoria=?";
@@ -188,11 +188,5 @@ public class CategoriaDAO {
         
         return lista;
     }
-    
-    public void getConnectionToReports(){
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-        Transaction transaction = session.getTransaction();
-    }
-
         
 }

@@ -5,7 +5,11 @@
  */
 package com.escom.wad.model.dao;
 
+import com.escom.wad.model.Categoria;
+import com.escom.wad.model.Producto;
+import com.escom.wad.model.dto.CategoriaDTO;
 import com.escom.wad.model.dto.ProductoDTO;
+import com.escom.wad.utileria.HibernateUtil;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,6 +19,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 /**
  *
@@ -46,152 +54,112 @@ public class ProductoDAO {
     }
     
     public void create(ProductoDTO dto) throws SQLException{
-        getConnection();
-        CallableStatement callableStatement = null;
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction transaction = session.getTransaction();
         
-        try {
-            callableStatement = (CallableStatement) connection.prepareCall(SQL_INSERT);
-            callableStatement.setString(1, dto.getEntidad().getNombreProducto());
-            callableStatement.setString(2, dto.getEntidad().getDescripcionProducto());
-            callableStatement.setFloat(3, dto.getEntidad().getPrecio());
-            callableStatement.setInt(4, dto.getEntidad().getExistencia());
-            callableStatement.setInt(5, dto.getEntidad().getIdCategoria());
-
-            callableStatement.executeUpdate(); // review
-        } finally  {
-            if(callableStatement != null){
-                callableStatement.close();
+        try{
+            transaction.begin();
+            
+            session.save(dto.getEntidad());
+            
+            transaction.commit();
+        }catch(HibernateException hibernateException){
+            if(transaction != null && transaction.isActive()){
+                transaction.rollback(); // haces todo o haces nada 
             }
-            if(connection != null){
-                connection.close();
-            }
+        }finally{ // liberar recursos
+            
         }
     }
     
     public void update(ProductoDTO dto) throws SQLException{
-        getConnection();
-        CallableStatement callableStatement = null;
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction transaction = session.getTransaction();
+        
+        try{
+            transaction.begin();
             
-        try {
-            callableStatement = (CallableStatement) connection.prepareCall(SQL_UPDATE);
-            callableStatement.setString(1, dto.getEntidad().getNombreProducto());
-            callableStatement.setString(2, dto.getEntidad().getDescripcionProducto());
-            callableStatement.setFloat(3, dto.getEntidad().getPrecio());
-            callableStatement.setInt(4, dto.getEntidad().getExistencia());
-            callableStatement.setInt(5, dto.getEntidad().getIdCategoria());
-            callableStatement.setInt(0, dto.getEntidad().getIdProducto());
+            session.update(dto.getEntidad());
             
-            callableStatement.executeUpdate();
-        } finally  {
-            if(callableStatement != null){
-                callableStatement.close();
+            transaction.commit();
+        }catch(HibernateException hibernateException){
+            if(transaction != null && transaction.isActive()){
+                transaction.rollback(); // haces todo o haces nada 
             }
-            if(connection != null){
-                connection.close();
-            }
+        }finally{ // liberar recursos
+            
         }
     }
     
     
     public void delete(ProductoDTO dto) throws SQLException{
-        getConnection();
-        CallableStatement callableStatement = null;
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction transaction = session.getTransaction();
         
-        try {
-            callableStatement = (CallableStatement) connection.prepareCall(SQL_DELETE);
-            callableStatement.setInt(1, dto.getEntidad().getIdProducto());
-            callableStatement.executeUpdate();
-        } finally  {
-            if(callableStatement != null){
-                callableStatement.close();
+        try{
+            transaction.begin();
+            
+            session.delete(dto.getEntidad());
+            
+            transaction.commit();
+        }catch(HibernateException hibernateException){
+            if(transaction != null && transaction.isActive()){
+                transaction.rollback(); // haces todo o haces nada 
             }
-            if(connection != null){
-                connection.close();
-            }
+        }finally{ // liberar recursos
+            
         }
     }
     
     
     public ProductoDTO read(ProductoDTO dto) throws SQLException{
-        getConnection();
-        CallableStatement callableStatement = null;
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction transaction = session.getTransaction();
         
-        ResultSet rs = null;
-        try {
-            callableStatement = (CallableStatement) connection.prepareCall(SQL_SELECT);
-            callableStatement.setInt(1, dto.getEntidad().getIdProducto());
+        try{
+            transaction.begin();
             
-            rs = callableStatement.executeQuery();
+            dto.setEntidad(session.get(dto.getEntidad().getClass(), dto.getEntidad().getIdCategoria()));
+            dto.setEntidad(dto.getEntidad());
             
-            List results = getResults(rs);
+            transaction.commit();
+        }catch(HibernateException hibernateException){
+            if(transaction != null && transaction.isActive()){
+                transaction.rollback(); // haces todo o haces nada 
+            }
+        }finally{ // liberar recursos
             
-            if(results.size() > 0){
-                return (ProductoDTO) results.get(0);
-            }else{
-                return null;
-            }
-            
-        } finally  {
-            if(rs != null){
-                rs.close();
-            }
-            if(callableStatement != null){
-                callableStatement.close();
-            }
-            if(connection != null){
-                connection.close();
-            }
         }
+        
+        return dto;
     }
     
     
     public List readAll() throws SQLException{
-        getConnection();
-        CallableStatement callableStatement = null;
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction transaction = session.getTransaction();
+        List lista = new ArrayList();
         
-        ResultSet rs = null;
-        try {
-            callableStatement = (CallableStatement) connection.prepareCall(SQL_SELECT_ALL);
-            rs = callableStatement.executeQuery();
+        try{
+            transaction.begin();
             
-            List results = getResults(rs);
-            
-            if(results.size() > 0){
-                return results;
-            }else{
-                return null;
+            Query query = session.createQuery("from Producto p order by p.idProducto");
+            for (Producto p : (List<Producto>)query.list()) {  
+                ProductoDTO dto = new ProductoDTO();
+                dto.setEntidad(p);
+                lista.add(dto);
             }
             
-        } finally  {
-            if(rs != null){
-                rs.close();
+            transaction.commit();
+        }catch(HibernateException hibernateException){
+            if(transaction != null && transaction.isActive()){
+                transaction.rollback(); // haces todo o haces nada 
             }
-            if(callableStatement != null){
-                callableStatement.close();
-            }
-            if(connection != null){
-                connection.close();
-            }
-        }
-    }
-    
-    private List getResults(ResultSet rs) throws SQLException{
-        List results = new ArrayList();
-        
-        while(rs.next()){
-            ProductoDTO productoDTO = new ProductoDTO();
+        }finally{ // liberar recursos
             
-            productoDTO.getEntidad().setIdProducto(rs.getInt("idProducto"));
-            productoDTO.getEntidad().setNombreProducto(rs.getString("nombreProducto"));
-            productoDTO.getEntidad().setDescripcionProducto(rs.getString("descripcionProducto"));
-            productoDTO.getEntidad().setPrecio(rs.getFloat("precio"));
-            productoDTO.getEntidad().setExistencia(rs.getInt("existencia"));
-            productoDTO.getEntidad().setIdCategoria(rs.getInt("idCategoria"));
-            
-            results.add(productoDTO);
         }
         
-        return results;
+        return lista;
     }
     
 }

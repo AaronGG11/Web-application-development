@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperRunManager;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 /**
  *
@@ -33,6 +34,16 @@ import net.sf.jasperreports.engine.JasperRunManager;
  */
 @WebServlet(name = "ProductoServlet", urlPatterns = {"/ProductoServlet"})
 public class ProductoServlet extends HttpServlet {
+    
+    private JRBeanCollectionDataSource dataSource;
+    
+    public JRBeanCollectionDataSource getDataSource() {
+	return dataSource;
+    }
+
+    public void setDataSource(JRBeanCollectionDataSource dataSource) {
+		this.dataSource = dataSource;
+    }
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -250,7 +261,7 @@ String accion = request.getParameter("accion");
         try {
             ServletOutputStream servletOutputStream = response.getOutputStream();
             File plantilla_reporte = new File(getServletConfig().getServletContext().getRealPath("/reportes/ProductoIndividual.jasper")); // directorio base de la app
-            byte[] bytes = JasperRunManager.runReportToPdf(plantilla_reporte.getPath(), parametros, dao.getConnection());
+            byte[] bytes = JasperRunManager.runReportToPdf(plantilla_reporte.getPath(), parametros, dataSource);
             
             response.setContentType("application/pdf");
             response.setContentLength(bytes.length);
