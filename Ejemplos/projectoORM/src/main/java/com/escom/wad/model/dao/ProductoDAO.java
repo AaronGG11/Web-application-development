@@ -119,7 +119,7 @@ public class ProductoDAO {
         try{
             transaction.begin();
             
-            dto.setEntidad(session.get(dto.getEntidad().getClass(), dto.getEntidad().getIdCategoria()));
+            dto.setEntidad(session.get(dto.getEntidad().getClass(), dto.getEntidad().getIdProducto()));
             dto.setEntidad(dto.getEntidad());
             
             transaction.commit();
