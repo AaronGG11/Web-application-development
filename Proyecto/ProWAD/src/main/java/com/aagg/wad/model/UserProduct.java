@@ -8,11 +8,11 @@ public class UserProduct {
     @EmbeddedId
     private UserProductId id;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @MapsId("userId")
     private User user;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @MapsId("productId")
     private Product product;
 }
