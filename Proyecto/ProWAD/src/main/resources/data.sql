@@ -1,19 +1,56 @@
+--- Insertar roles de usuario
 REPLACE INTO `role` VALUES (1,'ADMIN');
 REPLACE INTO `role` VALUES (2,'SELLER');
 REPLACE INTO `role` VALUES (3,'CONSUMER');
 
+--- Insertar usuarios
 REPLACE INTO `user` VALUES (1, true, 'admin@gmail.com', 'admin', 'admin', '$2a$10$xtSW2iL4F7s.q0fLPOn8/.3xjAuHDxtq8Pwk2lYvHZaGapjbNDwNi', 'admin');
+REPLACE INTO `user` VALUES (2, true, 'seller@gmail.com', 'seller', 'seller', '$2a$10$D3cWMHBnM/41c5G1JsbKceNYxrmwtDqavYftyglrL6ADyK2cyGn6S', 'seller');
+REPLACE INTO `user` VALUES (3, true, 'consumer@gmail.com', 'consumer', 'consumer', '$2a$10$zytOv56.XywEYk1VTVK5u.KKObHCgnweOc9u3UgudGMQ/myEAUQ.K', 'consumer');
+
+--- Insertar usario - rol
 REPLACE INTO `user_role` VALUES (1, 1);
+REPLACE INTO `user_role` VALUES (2, 2);
+REPLACE INTO `user_role` VALUES (3, 3);
+
+
+--- Insertar productos
+REPLACE INTO `product` VALUES
+(1, true, 799.0, 'Piedra de obsidiana color negro, con forma tipica de diamante, bordes suaves para el tacto, incluye soporte, 10 cm de altura y 8 cm de diametro', 'Diamante de obsidiana negra', 3);
 
 REPLACE INTO `product` VALUES
-(1, true, 799.0, "Piedra de obsidiana color negro, con forma tipica de diamante, bordes suaves para el tacto, incluye soporte, 10 cm de altura y 8 cm de diametro", "Diamante de obsidiana negra", 3);
-
-REPLACE INTO `product` `VALUES`
 (2, true, 999.0, 'Con figura de armadillo a dos caras, capacidad de 1.2 Litros', 'Vasija talla en obsidiana', 1 );
 
+REPLACE INTO `product` VALUES
+(3, true, 298.0, '1 Huevo De Obsidiana ARTESANAL Teotihuacano de 6X5', 'Huevo 100% Obsidiana', 13);
 
-REPLACE INTO `user_product` INTO(1,1);
+REPLACE INTO `product` VALUES
+(4, true, 545.0,'Las rocas que se usan son volcánicas, suaves y lisas. Contienen una mayor cantidad de hierro, ayudando a retener por mayor tiempo el calor.', 'Obsidiana Jabón #25 Piedra Caliente Masaje', 10);
 
+REPLACE INTO `product` VALUES
+(5, true, 899.0, 'De resina con pasta epoxica', 'Pirámide De Vidrio Artesanal Tallado', 10);
+
+REPLACE INTO `product` VALUES
+(6, true, 1950.0, 'Mascara de oxidiana con incrustasion artesanía prehispánica réplica 8cm de 8.5cm de ancho', 'Mascara Funeral Obsidiana Lápiz Lazuli', 1);
+
+REPLACE INTO `product` VALUES
+(7, true, 200.0, 'Decoración de plástico picado a mano artesanal elaborado a base de cincel y martillo.', 'Plástico Picado - Arcoris 10 Tiras De 5.5 Metros De Largo', 216);
+
+REPLACE INTO `product` VALUES
+(8, true, 9999.0, 'Guerrero aguila de obsidiana, con incrustaciones de ojo de tigre y plata', 'Artesania Guerrero Aguila Obsidiana Teotihuacán Y Plata Fina', 1);
+
+REPLACE INTO `product` VALUES
+(9, true, 499.0, '1 Jorongo Mexicano de 1.00 m de largo de frente y 1.00 m de espalda X 90 cms ancho', 'Jorongo Gabán Artesanal Piramides De México', 8);
+
+REPLACE INTO `product` VALUES
+(10, true, 450.0, 'Excelente pieza de decoración y poder energético, limpia malas energías.', 'Alien Obsidiana - Con Energía', 2);
+
+--- Insertar prodcuto - usario
+REPLACE INTO `user_product` VALUES (1,1);
+REPLACE INTO `user_product` VALUES (2,1);
+REPLACE INTO `user_product` VALUES (3,1);
+REPLACE INTO `user_product` VALUES (4,1);
+REPLACE INTO `user_product` VALUES (5,1);
 
 
 REPLACE INTO `state` VALUES
