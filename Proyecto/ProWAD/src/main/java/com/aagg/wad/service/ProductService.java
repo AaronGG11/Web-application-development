@@ -2,6 +2,7 @@ package com.aagg.wad.service;
 
 import com.aagg.wad.model.Product;
 import com.aagg.wad.repository.ProductRepository;
+import com.aagg.wad.repository.StateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +10,7 @@ import java.util.List;
 
 @Service
 public class ProductService {
+    @Autowired
     private ProductRepository productRepository;
 
     @Autowired
@@ -26,5 +28,10 @@ public class ProductService {
 
     public Product saveProduct(Product product){
         return productRepository.save(product);
+    }
+
+    public List<Product> getProductsByUser(Integer id)
+    {
+        return productRepository.getProductsByUser(id);
     }
 }

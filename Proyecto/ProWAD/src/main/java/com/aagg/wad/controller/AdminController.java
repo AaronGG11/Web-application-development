@@ -6,6 +6,7 @@ import com.aagg.wad.model.Town;
 import com.aagg.wad.model.User;
 import com.aagg.wad.service.ProductService;
 import com.aagg.wad.service.StateService;
+import com.aagg.wad.service.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
@@ -31,12 +32,17 @@ public class AdminController {
     @Autowired
     private StateService stateService;
 
+    @Autowired
+    private UserService userService;
+
     @GetMapping(value="/admin/productlist")
     public ModelAndView producList(){
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-        modelAndView.addObject("productos", productService.findAllProducts());
+        User user = userService.findUserByUserName(auth.getName());
+
+        modelAndView.addObject("productos", productService.getProductsByUser(user.getId()));
         modelAndView.setViewName("admin/product_list");
         return modelAndView;
     }

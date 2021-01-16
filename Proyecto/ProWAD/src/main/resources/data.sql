@@ -8,11 +8,11 @@ REPLACE INTO `user_role` VALUES (1, 1);
 REPLACE INTO `product` VALUES
 (1, true, 799.0, "Piedra de obsidiana color negro, con forma tipica de diamante, bordes suaves para el tacto, incluye soporte, 10 cm de altura y 8 cm de diametro", "Diamante de obsidiana negra", 3);
 
-REPLACE INTO `product` VALUES
+REPLACE INTO `product` `VALUES`
 (2, true, 999.0, 'Con figura de armadillo a dos caras, capacidad de 1.2 Litros', 'Vasija talla en obsidiana', 1 );
 
 
-
+REPLACE INTO `user_product` INTO(1,1);
 
 
 
