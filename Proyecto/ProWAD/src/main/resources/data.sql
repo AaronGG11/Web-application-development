@@ -13,7 +13,6 @@ REPLACE INTO `user_role` VALUES (1, 1);
 REPLACE INTO `user_role` VALUES (2, 2);
 REPLACE INTO `user_role` VALUES (3, 3);
 
-
 --- Insertar productos
 REPLACE INTO `product` VALUES
 (1, true, 799.0, 'Piedra de obsidiana color negro, con forma tipica de diamante, bordes suaves para el tacto, incluye soporte, 10 cm de altura y 8 cm de diametro', 'Diamante de obsidiana negra', 3);
@@ -52,7 +51,7 @@ REPLACE INTO `user_product` VALUES (3,1);
 REPLACE INTO `user_product` VALUES (4,1);
 REPLACE INTO `user_product` VALUES (5,1);
 
-
+--- Insertar estados de la mexico
 REPLACE INTO `state` VALUES
 (1, 'Aguascalientes'),
 (2, 'Baja California'),
@@ -87,6 +86,7 @@ REPLACE INTO `state` VALUES
 (31, 'Yucatán'),
 (32, 'Zacatecas');
 
+--- Insertar municipios de mexico
 REPLACE INTO `town` VALUES
 (1, 'Aguascalientes'),
 (2, 'San Francisco de los Romo'),
@@ -2546,6 +2546,7 @@ REPLACE INTO `town` VALUES
 (2456, 'Juchipila'),
 (2457, 'Moyahua de Estrada');
 
+--- Insertar estado - municipio
 INSERT INTO `state_town` VALUES
 (1, 1),
 (1, 2),
