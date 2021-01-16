@@ -2,9 +2,11 @@ package com.aagg.wad.repository;
 
 import com.aagg.wad.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -15,5 +17,11 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
             "AND up.product_product_id = p.product_id " +
             "AND up.user_user_id = :id", nativeQuery = true)
     List<Product> getProductsByUser(@Param("id") Integer id);
+
+    @Transactional
+    @Modifying
+    @Query(value = "INSERT INTO user_product VALUES" +
+            "(:id_product, :id_user)", nativeQuery = true)
+    void saveUserProduct(@Param("id_product") Integer id_product, @Param("id_user") Integer id_user);
 
 }

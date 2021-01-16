@@ -75,11 +75,13 @@ public class AdminController {
     public ModelAndView createNewProduct(@Valid Product product, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
 
-        System.out.println(product);
-        productService.saveProduct(product);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByUserName(auth.getName());
 
+        Product aux_product = productService.saveProduct(product);
+        productService.saveUserProduct(aux_product.getId(), user.getId());
 
-        modelAndView.addObject("productos", productService.findAllProducts());
+        modelAndView.addObject("productos", productService.getProductsByUser(user.getId()));
         modelAndView.setViewName("admin/product_list");
         return modelAndView;
     }

@@ -34,4 +34,8 @@ public class ProductService {
     {
         return productRepository.getProductsByUser(id);
     }
+
+    public void saveUserProduct(Integer id_product, Integer id_user){
+        productRepository.saveUserProduct(id_product, id_user);
+    }
 }
