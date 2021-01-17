@@ -26,4 +26,11 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     @Query(value = "SELECT * FROM product WHERE availability = true", nativeQuery = true)
     List<Product> getAvailableProducts();
+
+
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE product SET stock = stock -1 " +
+            "WHERE product_id = :id", nativeQuery = true)
+    void decreaseStock(@Param("id") Integer product_id);
 }

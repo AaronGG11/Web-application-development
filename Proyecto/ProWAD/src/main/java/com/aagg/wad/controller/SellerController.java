@@ -46,7 +46,6 @@ public class SellerController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
         User user = userService.findUserByUserName(auth.getName());
-        System.out.println(user);
 
         modelAndView.addObject("productos", productService.getProductsByUser(user.getId()));
         modelAndView.setViewName("seller/product_list");

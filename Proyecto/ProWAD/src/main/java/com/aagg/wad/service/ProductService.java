@@ -42,4 +42,8 @@ public class ProductService {
     public List<Product> getAvailableProducts(){
         return productRepository.getAvailableProducts();
     }
+
+    public void decreaseStock(Integer id){
+        productRepository.decreaseStock(id);
+    }
 }

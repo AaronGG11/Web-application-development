@@ -9,15 +9,13 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class ConsumerController {
     @Autowired
     private ProductService productService;
-
-    @Autowired
-    private StateService stateService;
 
     @Autowired
     private UserService userService;
@@ -42,11 +40,11 @@ public class ConsumerController {
         return modelAndView;
     }
 
-    @GetMapping(value = "/consumer/buy")
-    public ModelAndView buyProduct(){
+    @GetMapping(value = "/consumer/buy/{id}")
+    public ModelAndView buyProduct(@PathVariable Integer id){
         ModelAndView modelAndView = new ModelAndView();
 
-
+        productService.decreaseStock(id);
 
         modelAndView.addObject("productos", productService.getAvailableProducts());
         modelAndView.setViewName("consumer/product_list");
