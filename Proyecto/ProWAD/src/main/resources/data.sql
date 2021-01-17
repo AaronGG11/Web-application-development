@@ -1,19 +1,19 @@
---- Insertar roles de usuario
+--- Insert user roles
 REPLACE INTO `role` VALUES (1,'ADMIN')^;
 REPLACE INTO `role` VALUES (2,'SELLER')^;
 REPLACE INTO `role` VALUES (3,'CONSUMER')^;
 
---- Insertar usuarios
+--- Insert users
 REPLACE INTO `user` VALUES (1, true, 'admin@gmail.com', 'admin', 'admin', '$2a$10$xtSW2iL4F7s.q0fLPOn8/.3xjAuHDxtq8Pwk2lYvHZaGapjbNDwNi', 'admin')^;
 REPLACE INTO `user` VALUES (2, true, 'seller@gmail.com', 'seller', 'seller', '$2a$10$D3cWMHBnM/41c5G1JsbKceNYxrmwtDqavYftyglrL6ADyK2cyGn6S', 'seller')^;
 REPLACE INTO `user` VALUES (3, true, 'consumer@gmail.com', 'consumer', 'consumer', '$2a$10$zytOv56.XywEYk1VTVK5u.KKObHCgnweOc9u3UgudGMQ/myEAUQ.K', 'consumer')^;
 
---- Insertar usario - rol
+--- Insert user - rol relation
 REPLACE INTO `user_role` VALUES (1, 1)^;
 REPLACE INTO `user_role` VALUES (2, 2)^;
 REPLACE INTO `user_role` VALUES (3, 3)^;
 
---- Insertar productos
+--- Insert products
 REPLACE INTO `product` VALUES
 (1, true, 799.0, 'Piedra de obsidiana color negro, con forma tipica de diamante, bordes suaves para el tacto, incluye soporte, 10 cm de altura y 8 cm de diametro', 'Diamante de obsidiana negra', 3)^;
 
@@ -44,7 +44,7 @@ REPLACE INTO `product` VALUES
 REPLACE INTO `product` VALUES
 (10, true, 450.0, 'Excelente pieza de decoración y poder energético, limpia malas energías.', 'Alien Obsidiana - Con Energía', 2)^;
 
---- Insertar producto - usario
+--- Insert product - user relation
 REPLACE INTO `user_product` VALUES (1,2)^;
 REPLACE INTO `user_product` VALUES (2,2)^;
 REPLACE INTO `user_product` VALUES (3,2)^;
@@ -62,7 +62,7 @@ BEGIN
 END ^;
 
 
---- Insertar estados de la mexico
+--- Insert Mexican states
 REPLACE INTO `state` VALUES
 (1, 'Aguascalientes'),
 (2, 'Baja California'),
@@ -97,7 +97,7 @@ REPLACE INTO `state` VALUES
 (31, 'Yucatán'),
 (32, 'Zacatecas')^;
 
---- Insertar municipios de mexico
+--- Insert Mexican towns
 REPLACE INTO `town` VALUES
 (1, 'Aguascalientes'),
 (2, 'San Francisco de los Romo'),
@@ -2557,7 +2557,7 @@ REPLACE INTO `town` VALUES
 (2456, 'Juchipila'),
 (2457, 'Moyahua de Estrada')^;
 
---- Insertar estado - municipio
+--- Insert State - town relation
 INSERT INTO `state_town` VALUES
 (1, 1),
 (1, 2),
