@@ -44,12 +44,12 @@ REPLACE INTO `product` VALUES
 REPLACE INTO `product` VALUES
 (10, true, 450.0, 'Excelente pieza de decoración y poder energético, limpia malas energías.', 'Alien Obsidiana - Con Energía', 2);
 
---- Insertar prodcuto - usario
-REPLACE INTO `user_product` VALUES (1,1);
-REPLACE INTO `user_product` VALUES (2,1);
-REPLACE INTO `user_product` VALUES (3,1);
-REPLACE INTO `user_product` VALUES (4,1);
-REPLACE INTO `user_product` VALUES (5,1);
+--- Insertar producto - usario
+REPLACE INTO `user_product` VALUES (1,2);
+REPLACE INTO `user_product` VALUES (2,2);
+REPLACE INTO `user_product` VALUES (3,2);
+REPLACE INTO `user_product` VALUES (4,2);
+REPLACE INTO `user_product` VALUES (5,2);
 
 --- Insertar estados de la mexico
 REPLACE INTO `state` VALUES
