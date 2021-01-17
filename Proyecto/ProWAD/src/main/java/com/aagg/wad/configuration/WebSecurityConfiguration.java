@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
@@ -21,7 +22,12 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private MyUserDetailsService userDetailsService;
 
+    private AuthenticationSuccessHandler authenticationSuccessHandler;
 
+    @Autowired
+    public WebSecurityConfiguration(AuthenticationSuccessHandler authenticationSuccessHandler) {
+        this.authenticationSuccessHandler = authenticationSuccessHandler;
+    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -36,13 +42,12 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         String loginPage = "/login";
         String logoutPage = "/logout";
 
-        http.
-                authorizeRequests()
+        http
+                .authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers(loginPage).permitAll()
                 .antMatchers("/registration").permitAll()
                 .antMatchers("/admin/**").hasAuthority("ADMIN")
-                .antMatchers("/seller/**").hasAuthority("SELLER")
                 .anyRequest()
                 .authenticated()
                 .and().csrf().disable()
@@ -50,10 +55,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .loginPage(loginPage)
                 .loginPage("/")
                 .failureUrl("/login?error=true")
-                .defaultSuccessUrl("/admin/home")
-                .defaultSuccessUrl("/seller/home")
+                .successHandler(authenticationSuccessHandler)
+                //.defaultSuccessUrl("/admin/home")
                 .usernameParameter("user_name")
-                .passwordParameter("password")
                 .and().logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher(logoutPage))
                 .logoutSuccessUrl(loginPage).and().exceptionHandling();
