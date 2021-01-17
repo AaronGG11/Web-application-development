@@ -24,4 +24,6 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
             "(:id_product, :id_user)", nativeQuery = true)
     void saveUserProduct(@Param("id_product") Integer id_product, @Param("id_user") Integer id_user);
 
+    @Query(value = "SELECT * FROM product WHERE availability = true", nativeQuery = true)
+    List<Product> getAvailableProducts();
 }

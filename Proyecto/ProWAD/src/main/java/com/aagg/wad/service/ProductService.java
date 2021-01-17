@@ -38,4 +38,8 @@ public class ProductService {
     public void saveUserProduct(Integer id_product, Integer id_user){
         productRepository.saveUserProduct(id_product, id_user);
     }
+
+    public List<Product> getAvailableProducts(){
+        return productRepository.getAvailableProducts();
+    }
 }

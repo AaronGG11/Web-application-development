@@ -32,4 +32,24 @@ public class ConsumerController {
         modelAndView.setViewName("consumer/home");
         return modelAndView;
     }
+
+    @GetMapping(value="/consumer/productlist")
+    public ModelAndView producList(){
+        ModelAndView modelAndView = new ModelAndView();
+
+        modelAndView.addObject("productos", productService.getAvailableProducts());
+        modelAndView.setViewName("consumer/product_list");
+        return modelAndView;
+    }
+
+    @GetMapping(value = "/consumer/buy")
+    public ModelAndView buyProduct(){
+        ModelAndView modelAndView = new ModelAndView();
+
+
+
+        modelAndView.addObject("productos", productService.getAvailableProducts());
+        modelAndView.setViewName("consumer/product_list");
+        return modelAndView;
+    }
 }
