@@ -14,8 +14,8 @@ Sistema web realizado con Spring Boot, el cual simula una tienda online en el qu
 ### API
 |#|Nombre|Descripción|
 |----|----|----|
-|1|/|Incio de sesión|
-|2|/login|Incio de sesión|
+|1|/|Inicio de sesión|
+|2|/login|Inicio de sesión|
 |3|/registration|Registro de usuario|
 |4|/admin/home|Página de inicio de administrador|
 |5|/seller/home|Página de inicio de vendedor|
