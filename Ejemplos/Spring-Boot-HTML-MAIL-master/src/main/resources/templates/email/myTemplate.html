@@ -23,7 +23,7 @@ li {
 		<p th:text="${Content.message}"></p>
 		<p>This application developed using :</p>
 		<ol>
-			<li th:each="variable : ${Content}" th:text="${variable.technology}"></li>
+			<li th:each="variable : ${Content.technology}" th:text="${variable}"></li>
 		</ol>
 		<p>Saludos,</p>
 		<p style="font-weight: bold;">AG Soluciones</p>
