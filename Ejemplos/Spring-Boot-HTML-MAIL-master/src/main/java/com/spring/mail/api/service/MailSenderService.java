@@ -51,13 +51,13 @@ public class MailSenderService {
 
 	public MailBodyContent create() {
 		MailBodyContent content = new MailBodyContent();
-		content.setUsername("Basant Hota");
+		content.setUsername("usuario");
 		List<String> technology = new ArrayList<>();
 		technology.add("Spring-Boot");
 		technology.add("Thymeleaf");
 		technology.add("Template Engine");
 		content.setTechnology(technology);
-		content.setMessage("This is a sample Test mail where the body is purely HTML ");
+		content.setMessage("Este es un correo de bienvenida al sistema desarrollado en la optativa Web Application Development en IPN ESCOM 2021.");
 		content.setTechnology(technology);
 		return content;
 	}

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title th:remove="all">Order Confirmation</title>
+<title th:remove="all">Bienvenido al sistema AG</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <style type="text/css">
 p {
@@ -19,9 +19,9 @@ li {
 			height="150" width="100%" />
 	</div>
 	<div>
-		<p th:text="'Dear '+ ${Content.username}+','">Name</p>
+		<p th:text="'Estimado '+ ${Content.username}+','">Name</p>
 		<p th:text="${Content.message}"></p>
-		<p>This application developed using :</p>
+		<p>Datos de usuario registrado:</p>
 		<ol>
 			<li th:each="variable : ${Content.technology}" th:text="${variable}"></li>
 		</ol>
