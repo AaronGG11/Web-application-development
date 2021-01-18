@@ -23,7 +23,12 @@ Sistema web realizado con Spring Boot, el cual simula una tienda online en el qu
 |7|/seller/formProduct|Formulario de registro de producto|
 |8|/seller/getTowns/|Obtener municipios con base a id de estado|
 |9|/consumer/home|Página de inicio de cliente|
-|10|/consumer/||
+|10|/consumer/productlist|Obtener todos los productos disponibles|
+|11|/consumer/buy/{id}|Comprar producto, disminuye en 1 unidad el stock del vendedor|
+|12|-|-|
+|13|-|-|
+|14|-|-|
+
 
 ### Modelo de datos
 ![Imagen](https://github.com/AaronGG11/Web-application-development/blob/master/Proyecto/Imagenes/bd.png?raw=true) 
