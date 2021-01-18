@@ -39,8 +39,6 @@ public class MailSenderService {
 				StandardCharsets.UTF_8.name());
 
 		// added for attachment
-		helper.addAttachment("pulpitrock.jpg", new ClassPathResource("templates/pulpitrock.jpg"));
-
 		helper.setTo(to);
 		helper.setSubject(subject);
 		helper.setText(body, true);
