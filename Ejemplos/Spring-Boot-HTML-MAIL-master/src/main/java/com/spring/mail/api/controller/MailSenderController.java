@@ -19,7 +19,6 @@ import com.spring.mail.api.service.MailSenderService;
 @RestController
 @PropertySource("classpath:application.properties")
 public class MailSenderController {
-
 	@Autowired(required = true)
 	private MailSenderService service;
 	@Value("${inlineImage}")
@@ -29,7 +28,8 @@ public class MailSenderController {
 	@RequestMapping("/sendHtmlEmail")
 	public String send(@RequestBody MailRequest request) throws Exception {
 		MultipartFile image = getImageContent();
-		return service.sendEmail(request.getMailTo(), request.getSubject(), image, imageSource);
+
+		return service.sendEmail("mailto", "subject", image, imageSource);
 	}
 
 	private MultipartFile getImageContent() throws Exception {
