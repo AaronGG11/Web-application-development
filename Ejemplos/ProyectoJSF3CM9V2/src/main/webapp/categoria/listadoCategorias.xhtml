@@ -98,7 +98,7 @@
                                     <h:column>
                                         <f:facet name="header">Actualizar</f:facet>
                                         <h:commandLink
-                                            action="#{categoriaMB.prepareUpdate()}"
+                                            action="#{categoriaMB.delete()}"
                                             actionListener="#{categoriaMB.seleccionarCategoria}"
                                             immediate="true">
                                             
@@ -110,13 +110,6 @@
                                     </h:column>
                                     
                                 </h:dataTable>
-                                
-                                <h:commandButton
-                                    value="Nuevo"
-                                    action="#{categoriaMB.prepareAdd()}"
-                                    class="btn btn-warning" 
-                                    />
-                                
                             </h:form>
                         </f:view>
                     </h:panelGrid>
