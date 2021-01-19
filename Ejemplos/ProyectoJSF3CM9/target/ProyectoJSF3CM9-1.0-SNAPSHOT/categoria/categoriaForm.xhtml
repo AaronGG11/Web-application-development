@@ -59,6 +59,8 @@
                     <h:panelGrid>
                         <f:view>
                             <h:form id="frmDatosCategoria">
+                                <h:messages/>
+                                
                                 <h:inputHidden id="accion" value="#{categoriaMB.accion}"/>
                                 <h:panelGrid columns="3" class="form-group row">
                                     <h:outputLabel value="Clave Categoria"
@@ -71,6 +73,8 @@
                                                  class="form-control"
                                                  readonly="true"
                                                  />
+                                    <h:message for="txtIdCategoria"/>
+                                    
                                     <h:outputLabel value="Nombre Categoria"
                                                    id="lblNombreCategoria"
                                                    />
@@ -85,6 +89,36 @@
                                     
                                     <h:message for="txtNombreCategoria"/>
                                     
+                                    <h:outputLabel value="Nombre Categoria"
+                                                   id="lblDescripcionCategoria"
+                                                   />
+                                    <h:inputText id="txtDescripcionCategoria"
+                                                 value="#{categoriaMB.dto.entidad.descripcionCategoria}"
+                                                 class="form-control"
+                                                 required="true"
+                                                 requiredMessage="Descripcion obligatorio"
+                                                 >
+                                        <f:validateRequired/>
+                                    </h:inputText>
+                                    
+                                    <h:message for="txtDescripcionCategoria"/>
+                                    
+                                    <h:commandButton
+                                        value="Guardar"
+                                        action="#{categoriaMB.add()}"
+                                        rendered="#{categoriaMB.modoCrear}"
+                                        class="btn btn-primary"/>
+                                    
+                                    <h:commandButton
+                                        value="Actualizar"
+                                        action="#{categoriaMB.update()}"
+                                        rendered="#{categoriaMB.modoActualizar}"
+                                        class="btn btn-success"/>
+                                    
+                                    <h:commandButton
+                                        value="Regresar"
+                                        action="#{categoriaMB.back()}"
+                                        class="btn btn-info"/>
                                 </h:panelGrid>
                             </h:form>
                         </f:view>
