@@ -59,7 +59,33 @@
                     <h:panelGrid>
                         <f:view>
                             <h:form id="frmDatosCategoria">
-                                
+                                <h:inputHidden id="accion" value="#{categoriaMB.accion}"/>
+                                <h:panelGrid columns="3" class="form-group row">
+                                    <h:outputLabel value="Clave Categoria"
+                                                   rendered="#{categoriaMB.modoActualizar}"
+                                                   id="lblIdCategoria"
+                                                   />
+                                    <h:inputText id="txtIdCategoria"
+                                                 value="#{categoriaMB.dto.entidad.idCategoria}"
+                                                 rendered="#{categoriaMB.modoActualizar}"
+                                                 class="form-control"
+                                                 readonly="true"
+                                                 />
+                                    <h:outputLabel value="Nombre Categoria"
+                                                   id="lblNombreCategoria"
+                                                   />
+                                    <h:inputText id="txtNombreCategoria"
+                                                 value="#{categoriaMB.dto.entidad.nombreCategoria}"
+                                                 class="form-control"
+                                                 required="true"
+                                                 requiredMessage="Nombre obligatorio"
+                                                 >
+                                        <f:validateRequired/>
+                                    </h:inputText>
+                                    
+                                    <h:message for="txtNombreCategoria"/>
+                                    
+                                </h:panelGrid>
                             </h:form>
                         </f:view>
                     </h:panelGrid>
