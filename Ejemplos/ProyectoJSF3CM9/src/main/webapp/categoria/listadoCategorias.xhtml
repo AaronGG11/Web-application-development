@@ -81,6 +81,34 @@
                                         <h:outputText value="#{dto.entidad.descripcionCategoria}"></h:outputText>
                                     </h:column>
                                     
+                                    <h:column>
+                                        <f:facet name="header">Eliminar</f:facet>
+                                        <h:commandLink
+                                            action="#{categoriaMB.delete()}"
+                                            actionListener="#{categoriaMB.seleccionarCategoria}"
+                                            immediate="true">
+                                            
+                                            <f:param
+                                                name="claveSel"
+                                                value="#{dto.entidad.idCategoria}"/>
+
+                                        </h:commandLink>
+                                    </h:column>
+                                    
+                                    <h:column>
+                                        <f:facet name="header">Actualizar</f:facet>
+                                        <h:commandLink
+                                            action="#{categoriaMB.delete()}"
+                                            actionListener="#{categoriaMB.seleccionarCategoria}"
+                                            immediate="true">
+                                            
+                                            <f:param
+                                                name="claveSel"
+                                                value="#{dto.entidad.idCategoria}"/>
+
+                                        </h:commandLink>
+                                    </h:column>
+                                    
                                 </h:dataTable>
                             </h:form>
                         </f:view>
