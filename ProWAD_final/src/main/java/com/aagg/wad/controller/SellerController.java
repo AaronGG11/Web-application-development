@@ -57,7 +57,7 @@ public class SellerController {
     }
 
     @GetMapping(value = "/formProduct")
-    public ModelAndView showForm(@ModelAttribute("product") Product product) {
+    public ModelAndView addProduct(@ModelAttribute("product") Product product) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("stateList", stateService.findAllStates());
         modelAndView.setViewName("seller/product_form");
@@ -116,6 +116,17 @@ public class SellerController {
 
         modelAndView.addObject("productos", productService.getProductsByPerson(user.getId()));
         modelAndView.setViewName("seller/product_list");
+        return modelAndView;
+    }
+
+    @GetMapping(value = "/update/{id}")
+    public ModelAndView updateProduct(@PathVariable Integer id, @ModelAttribute("product") Product product) {
+        ModelAndView modelAndView = new ModelAndView();
+
+        modelAndView.addObject("product", productService.findProductById(id));
+        modelAndView.addObject("stateList", stateService.findAllStates());
+        modelAndView.setViewName("seller/product_form");
+
         return modelAndView;
     }
 
