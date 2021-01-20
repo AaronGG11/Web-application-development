@@ -13,6 +13,6 @@ import java.util.List;
 @NoArgsConstructor
 public class MailBodyContent {
 	private String username;
-	private List<String> technology;
+	private List<String> features;
 	private String message;
 }

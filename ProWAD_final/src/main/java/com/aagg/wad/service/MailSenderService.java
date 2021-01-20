@@ -59,10 +59,9 @@ public class MailSenderService {
 		attributes.add("Apellido: " + user.getLastName());
 		attributes.add("Rol: " + user.getRoles().stream().collect(Collectors.toList()).get(0).getRole());
 
-
-		content.setTechnology(attributes);
+		content.setFeatures(attributes);
 		content.setMessage("Este es un correo de bienvenida al sistema desarrollado en la optativa Web Application Development en IPN ESCOM 2021.");
-		content.setTechnology(attributes);
+		content.setFeatures(attributes);
 		return content;
 	}
 
