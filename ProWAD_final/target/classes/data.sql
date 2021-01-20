@@ -63,6 +63,26 @@ INSERT INTO person_product VALUES (2,5)^;
 
 --- triggers
 -- trigger that updates a product when its stock equals to 0, so its availability has to be false
+CREATE OR REPLACE FUNCTION befo_update()
+  RETURNS trigger AS
+$$
+BEGIN
+IF NEW.stock = 0 THEN
+NEW.availability = false ;
+END IF;
+
+RETURN NEW;
+END;
+
+$$
+LANGUAGE 'plpgsql'^;
+
+CREATE TRIGGER updt_marks
+    BEFORE UPDATE
+    ON product
+    FOR EACH ROW
+    EXECUTE PROCEDURE befo_update()^;
+
 
 --- Insert Mexican states
 INSERT INTO state VALUES
