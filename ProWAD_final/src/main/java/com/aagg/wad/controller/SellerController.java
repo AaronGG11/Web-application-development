@@ -115,8 +115,4 @@ public class SellerController {
         modelAndView.setViewName("seller/product_list");
         return modelAndView;
     }
-
-
-
-
 }
