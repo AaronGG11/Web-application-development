@@ -24,7 +24,9 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
             "(:id_person, :id_product)", nativeQuery = true)
     void savePersonProduct(@Param("id_product") Integer id_product, @Param("id_person") Integer id_person);
 
-    @Query(value = "SELECT * FROM product WHERE availability = true", nativeQuery = true)
+    @Query(value = "SELECT * FROM product " +
+            "WHERE availability = true " +
+            "ORDER BY product_id ASC", nativeQuery = true)
     List<Product> getAvailableProducts();
 
 
@@ -40,5 +42,4 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
             "WHERE person_person_id = :person_id " +
             "AND product_product_id = :product_id", nativeQuery = true)
     void deleteProductPersonBy(@Param("person_id") Integer person_id, @Param("product_id") Integer product_id);
-
 }
