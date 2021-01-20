@@ -92,10 +92,10 @@ public class LoginController {
             Role personRole = roleRepository.findByRole(roles.get(role_id));
             person.setRoles(new HashSet<Role>(Arrays.asList(personRole)));
 
-            personService.savePerson(person);
+            Person person_created = personService.savePerson(person);
 
             MultipartFile image = getImageContent();
-            mailService.sendEmail("aarongarcia.ipn.escom@gmail.com", "welcome to AG solutions", image, imageSource);
+            mailService.sendEmail(person_created.getEmail(), "Bievenido al sistema AG soluciones", image, imageSource, person_created);
 
             modelAndView.addObject("successMessage", "User has been registered successfully");
             modelAndView.addObject("person", new Person());
@@ -109,7 +109,7 @@ public class LoginController {
         InputStream imageIs = null;
         byte[] imageByteArray = null;
         MultipartFile multipartFile = null;
-        imageIs = this.getClass().getClassLoader().getResourceAsStream("static/images/" + "download.jpg");
+        imageIs = this.getClass().getClassLoader().getResourceAsStream("static/images/" + templateMailBodyImageVal);
         imageByteArray = IOUtils.toByteArray(imageIs);
         multipartFile = new MockMultipartFile(imageIs.getClass().getName(), imageIs.getClass().getName(), "image/jpg",
                 imageByteArray);

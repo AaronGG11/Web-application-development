@@ -1,6 +1,7 @@
 package com.aagg.wad.service;
 
 import com.aagg.wad.model.MailBodyContent;
+import com.aagg.wad.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamSource;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -14,6 +15,7 @@ import javax.mail.internet.MimeMessage;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class MailSenderService {
@@ -23,11 +25,11 @@ public class MailSenderService {
 	@Autowired
 	private TemplateEngine templateEngine;
 
-	public String sendEmail(String to, String subject, MultipartFile image, InputStreamSource imageSource)
+	public String sendEmail(String to, String subject, MultipartFile image, InputStreamSource imageSource, Person user)
 			throws Exception {
-		String templateName = "mail/myTemplate";
+		String templateName = "mail/welcome";
 		Context context = new Context();
-		context.setVariable("Content", create());
+		context.setVariable("Content", create(user));
 		// add for image
 		context.setVariable("imageResourceName", image.getName());
 		String body = templateEngine.process(templateName, context);
@@ -47,16 +49,20 @@ public class MailSenderService {
 		return "mail send successfully";
 	}
 
-	public MailBodyContent create() {
+	public MailBodyContent create(Person user) {
 		MailBodyContent content = new MailBodyContent();
 		content.setUsername("usuario");
-		List<String> technology = new ArrayList<>();
-		technology.add("Spring-Boot");
-		technology.add("Thymeleaf");
-		technology.add("Template Engine");
-		content.setTechnology(technology);
+		List<String> attributes = new ArrayList<>();
+		attributes.add("Nombre usuario: " + user.getPersonName());
+		attributes.add("Contraseña: : " + "No disponible por politicas de seguridad");
+		attributes.add("Nombre: " + user.getName());
+		attributes.add("Apellido: " + user.getLastName());
+		attributes.add("Rol: " + user.getRoles().stream().collect(Collectors.toList()).get(0).getRole());
+
+
+		content.setTechnology(attributes);
 		content.setMessage("Este es un correo de bienvenida al sistema desarrollado en la optativa Web Application Development en IPN ESCOM 2021.");
-		content.setTechnology(technology);
+		content.setTechnology(attributes);
 		return content;
 	}
 
