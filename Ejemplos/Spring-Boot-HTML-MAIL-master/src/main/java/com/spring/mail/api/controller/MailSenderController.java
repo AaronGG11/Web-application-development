@@ -21,15 +21,17 @@ import com.spring.mail.api.service.MailSenderService;
 public class MailSenderController {
 	@Autowired(required = true)
 	private MailSenderService service;
+
 	@Value("${inlineImage}")
 	String templateMailBodyImageVal;
+
 	InputStreamSource imageSource = null;
 
 	@RequestMapping("/sendHtmlEmail")
 	public String send(@RequestBody MailRequest request) throws Exception {
 		MultipartFile image = getImageContent();
 
-		return service.sendEmail("mailto", "subject", image, imageSource);
+		return service.sendEmail("aarongarcia.ipn.escom@gmail.com", "welcome to AG solutions", image, imageSource);
 	}
 
 	private MultipartFile getImageContent() throws Exception {

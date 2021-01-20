@@ -2,6 +2,7 @@ package com.aagg.wad.controller;
 
 import com.aagg.wad.model.Product;
 import com.aagg.wad.model.Person;
+import com.aagg.wad.service.MailSenderService;
 import com.aagg.wad.service.ProductService;
 import com.aagg.wad.service.StateService;
 import com.aagg.wad.service.PersonService;
@@ -15,7 +16,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import javax.validation.Valid;
+import java.io.InputStream;
 import java.util.List;
 
 @Controller
@@ -115,4 +118,6 @@ public class SellerController {
         modelAndView.setViewName("seller/product_list");
         return modelAndView;
     }
+
+
 }

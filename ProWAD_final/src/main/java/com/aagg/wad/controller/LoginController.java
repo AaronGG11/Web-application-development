@@ -2,21 +2,33 @@ package com.aagg.wad.controller;
 
 import com.aagg.wad.model.Role;
 import com.aagg.wad.repository.RoleRepository;
+import com.aagg.wad.service.MailSenderService;
 import com.aagg.wad.service.RoleService;
 import com.aagg.wad.service.PersonService;
 import com.aagg.wad.model.Person;
+
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
+
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.InputStreamSource;
+
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.validation.Valid;
+import java.io.InputStream;
 import java.util.*;
 
 @Controller
+@PropertySource("classpath:application.properties")
 public class LoginController {
 
     @Autowired
@@ -27,6 +39,15 @@ public class LoginController {
 
     @Autowired
     private RoleRepository roleRepository;
+
+    @Autowired(required = true)
+    private MailSenderService mailService;
+
+    @Value("${inlineImage}")
+    String templateMailBodyImageVal;
+    InputStreamSource imageSource = null;
+
+
 
     @GetMapping(value={"/", "/login"})
     public ModelAndView login(){
@@ -51,7 +72,7 @@ public class LoginController {
     }
 
     @PostMapping(value = "/registration")
-    public ModelAndView createNewPerson(@Valid Person person, @RequestParam("role_id") Integer role_id, BindingResult bindingResult) {
+    public ModelAndView createNewPerson(@Valid Person person, @RequestParam("role_id") Integer role_id, BindingResult bindingResult) throws Exception {
         ModelAndView modelAndView = new ModelAndView();
         Person personExists = personService.findPersonByPersonName(person.getPersonName());
         if (personExists != null) {
@@ -72,11 +93,27 @@ public class LoginController {
             person.setRoles(new HashSet<Role>(Arrays.asList(personRole)));
 
             personService.savePerson(person);
+
+            MultipartFile image = getImageContent();
+            mailService.sendEmail("aarongarcia.ipn.escom@gmail.com", "welcome to AG solutions", image, imageSource);
+
             modelAndView.addObject("successMessage", "User has been registered successfully");
             modelAndView.addObject("person", new Person());
             modelAndView.setViewName("registration");
 
         }
         return modelAndView;
+    }
+
+    private MultipartFile getImageContent() throws Exception {
+        InputStream imageIs = null;
+        byte[] imageByteArray = null;
+        MultipartFile multipartFile = null;
+        imageIs = this.getClass().getClassLoader().getResourceAsStream("static/images/" + "download.jpg");
+        imageByteArray = IOUtils.toByteArray(imageIs);
+        multipartFile = new MockMultipartFile(imageIs.getClass().getName(), imageIs.getClass().getName(), "image/jpg",
+                imageByteArray);
+        imageSource = new ByteArrayResource(imageByteArray);
+        return multipartFile;
     }
 }
