@@ -48,8 +48,15 @@ public class LoginController {
     InputStreamSource imageSource = null;
 
 
+    @GetMapping(value = "/")
+    public ModelAndView index(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("index");
+        return modelAndView;
+    }
 
-    @GetMapping(value={"/", "/login"})
+
+    @GetMapping(value="/login")
     public ModelAndView login(){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login");

@@ -93,8 +93,6 @@ public class SellerController {
             productService.updateProduct(product);
         }
 
-
-
         modelAndView.addObject("productos", productService.getProductsByPerson(user.getId()));
         modelAndView.setViewName("seller/product_list");
         return modelAndView;
@@ -134,13 +132,4 @@ public class SellerController {
 
         return modelAndView;
     }
-
-    @RequestMapping(path = "/pdfReport", method = RequestMethod.GET)
-    public ModelAndView report() {
-        ModelAndView modelAndView = new ModelAndView();
-
-        return modelAndView;
-    }
-
-
 }

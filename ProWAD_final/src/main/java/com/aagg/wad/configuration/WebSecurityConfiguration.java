@@ -39,15 +39,15 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
+        String indexPage = "/";
         String loginPage = "/login";
         String logoutPage = "/logout";
 
         http
                 .authorizeRequests()
-                .antMatchers("/").permitAll()
+                .antMatchers(indexPage).permitAll()
                 .antMatchers(loginPage).permitAll()
                 .antMatchers("/registration").permitAll()
-                .antMatchers("/admin/**").hasAuthority("ADMIN")
                 .anyRequest()
                 .authenticated()
                 .and().csrf().disable()
