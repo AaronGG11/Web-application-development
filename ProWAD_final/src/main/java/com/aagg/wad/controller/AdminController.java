@@ -54,7 +54,7 @@ public class AdminController {
         JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, datasource.getConnection());
         response.setContentType("application/pdf");
-        response.setHeader("Content-Disposition", "inline; filename=livros.pdf");
+        response.setHeader("Content-Disposition", "inline; filename=seller_report.pdf");
 
         final OutputStream outputStream = response.getOutputStream();
         JasperExportManager.exportReportToPdfStream(jasperPrint, outputStream);
