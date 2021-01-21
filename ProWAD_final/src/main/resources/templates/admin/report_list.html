@@ -21,6 +21,9 @@
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/admin/reportList}">Reportes</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/admin/graph}">Gráfica</a>
+                </li>
 
             </ul>
             <a class="btn btn-md btn-danger " th:href="@{/logout}">
@@ -41,7 +44,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Seller report</h5>
                     <p class="card-text">Reporte PDF de todos los usarios de rol vendedor.</p>
-                    <a href="#" th:href="@{/admin/SellerReport}" target="blank" role="button" class="btn btn-success">
+                    <a href="#" th:href="@{/admin/SellerReport}" target="_blank" role="button" class="btn btn-success">
                         <i class='bx bxs-file-pdf'></i>
                         Ver PDF
                     </a>
@@ -54,7 +57,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Consumer report</h5>
                     <p class="card-text">Reporte PDF de todos los usarios de rol cliente.</p>
-                    <a href="#" th:href="@{/admin/ConsumerReport}" target="blank" role="button" class="btn btn-success">
+                    <a href="#" th:href="@{/admin/ConsumerReport}" target="_blank" role="button" class="btn btn-success">
                         <i class='bx bxs-file-pdf'></i>
                         Ver PDF
                     </a>
