@@ -19,12 +19,17 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
     @Autowired
     private PersonService userService;
+
+    @Autowired
+    private ProductService productService;
 
     @Autowired
     DataSource datasource;
@@ -70,6 +75,21 @@ public class AdminController {
 
         final OutputStream outputStream = response.getOutputStream();
         JasperExportManager.exportReportToPdfStream(jasperPrint, outputStream);
+    }
+
+    @GetMapping(value = "/graph")
+    public ModelAndView graphUsers(){
+        ModelAndView modelAndView = new ModelAndView();
+
+        Map<String, Integer> values_to_graph = new HashMap<>();
+        values_to_graph.put("seller", productService.countUserTypeByRoleId(2));
+        values_to_graph.put("consumer", productService.countUserTypeByRoleId(3));
+        values_to_graph.put("all", productService.countAllUsers());
+
+        modelAndView.addObject("params", values_to_graph);
+        modelAndView.setViewName("/admin/graph_users");
+
+        return modelAndView;
     }
 
 

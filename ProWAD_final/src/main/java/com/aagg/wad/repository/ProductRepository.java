@@ -72,5 +72,18 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
                    @Param("name") String name,
                    @Param("stock") Integer stock);
 
+    @Query(value = "SELECT COUNT (*) " +
+            "FROM person p, person_role pr, role r " +
+            "WHERE p.person_id = pr.person_id " +
+            "AND pr.role_id = r.role_id " +
+            "AND r.role_id = :role_id", nativeQuery = true)
+    Integer countUserTypeByRoleId(@Param("role_id") Integer role_id);
+
+    @Query(value = "SELECT COUNT (*) " +
+            "FROM person p", nativeQuery = true)
+    Integer countAllUsers();
+
+
+
 
 }

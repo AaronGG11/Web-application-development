@@ -104,7 +104,7 @@ public class LoginController {
             MultipartFile image = getImageContent();
             mailService.sendEmail(person_created.getEmail(), "Bievenido al sistema AG soluciones", image, imageSource, person_created);
 
-            modelAndView.addObject("successMessage", "User has been registered successfully");
+            modelAndView.addObject("successMessage", "Usuario registrado correctamente, revisa tu correo electrónico o inicia sesión");
             modelAndView.addObject("person", new Person());
             modelAndView.setViewName("registration");
 
