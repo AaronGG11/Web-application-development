@@ -27,7 +27,7 @@ Sistema web realizado con Spring Boot, el cual simula una tienda online en el qu
 |11|/seller/saveProduct|Guardar producto nuevo o actualización|
 |12|/selller/view/{id}|Página de visualización de producto con base a Id|
 |13|/seller/delete/{id}|Eliminar producto con base a Id|
-|14|/seller/update/{id}"|Página de formulario de producto con campos precargados para actualización|
+|14|/seller/update/{id}|Página de formulario de producto con campos precargados para actualización|
 |15|/seller/getTowns/|Obtener municipios con base a id de estado|
 |16|/consumer/home|Página de inicio de cliente|
 |17|/consumer/productlist|Obtener todos los productos disponibles|
