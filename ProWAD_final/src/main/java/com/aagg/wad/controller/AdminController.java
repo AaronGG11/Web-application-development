@@ -49,12 +49,24 @@ public class AdminController {
 
 
     @GetMapping(value = "/SellerReport")
-    public void imprimir(HttpServletResponse response) throws JRException, IOException, SQLException {
+    public void sellerReport(HttpServletResponse response) throws JRException, IOException, SQLException {
         InputStream jasperStream = this.getClass().getResourceAsStream("/reports/seller_report.jasper");
         JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, datasource.getConnection());
         response.setContentType("application/pdf");
         response.setHeader("Content-Disposition", "inline; filename=seller_report.pdf");
+
+        final OutputStream outputStream = response.getOutputStream();
+        JasperExportManager.exportReportToPdfStream(jasperPrint, outputStream);
+    }
+
+    @GetMapping(value = "/ConsumerReport")
+    public void consumerReport(HttpServletResponse response) throws JRException, IOException, SQLException {
+        InputStream jasperStream = this.getClass().getResourceAsStream("/reports/consumer_report.jasper");
+        JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, datasource.getConnection());
+        response.setContentType("application/pdf");
+        response.setHeader("Content-Disposition", "inline; filename=consumer_report.pdf");
 
         final OutputStream outputStream = response.getOutputStream();
         JasperExportManager.exportReportToPdfStream(jasperPrint, outputStream);
