@@ -21,7 +21,7 @@ Sistema web realizado con Spring Boot, el cual simula una tienda online en el qu
 |5|/admin/reportList|Página de acceso a reportes disponibles|
 |6|/admin/SellerReport|Generar reporte de usuarios "seller"|
 |7|/admin/ConsumerReport|Generar reporte de usuarios "consumer"|
-|8|/admin/graph|Gráficar usuarios totale sy por rol|
+|8|/admin/graph|Gráficar usuarios totales y por rol|
 |9|/seller/home|Página de inicio de vendedor|
 |10|/seller/productlist|Lista de productos|
 |11|/seller/formProduct|Formulario de registro de producto|
