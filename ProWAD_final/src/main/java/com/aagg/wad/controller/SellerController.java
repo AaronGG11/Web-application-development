@@ -2,16 +2,11 @@ package com.aagg.wad.controller;
 
 import com.aagg.wad.model.Product;
 import com.aagg.wad.model.Person;
-import com.aagg.wad.model.StateTown;
-import com.aagg.wad.service.MailSenderService;
 import com.aagg.wad.service.ProductService;
 import com.aagg.wad.service.StateService;
 import com.aagg.wad.service.PersonService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import net.sf.jasperreports.engine.*;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import net.sf.jasperreports.engine.util.JRLoader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,17 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-
-import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
 import javax.validation.Valid;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.sql.SQLException;
-import java.util.Hashtable;
 import java.util.List;
 
 @Controller
@@ -156,24 +141,6 @@ public class SellerController {
 
         return modelAndView;
     }
-
-    @Autowired
-    DataSource datasource;
-
-
-    @GetMapping(value = "/pdf")
-    public void imprimir(HttpServletResponse response) throws JRException, IOException, SQLException {
-        InputStream jasperStream = this.getClass().getResourceAsStream("/reports/seller_report.jasper");
-        JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
-        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, datasource.getConnection());
-        response.setContentType("application/pdf");
-        response.setHeader("Content-Disposition", "inline; filename=livros.pdf");
-
-        final OutputStream outputStream = response.getOutputStream();
-        JasperExportManager.exportReportToPdfStream(jasperPrint, outputStream);
-    }
-
-
 
 
 }

@@ -4,6 +4,8 @@ import com.aagg.wad.model.Person;
 import com.aagg.wad.service.ProductService;
 import com.aagg.wad.service.StateService;
 import com.aagg.wad.service.PersonService;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.util.JRLoader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -11,18 +13,23 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.sql.SQLException;
+
 @Controller
+@RequestMapping("/admin")
 public class AdminController {
-    @Autowired
-    private ProductService productService;
-
-    @Autowired
-    private StateService stateService;
-
     @Autowired
     private PersonService userService;
 
-    @GetMapping(value="/admin/home")
+    @Autowired
+    DataSource datasource;
+
+    @GetMapping(value="/home")
     public ModelAndView home(){
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -31,6 +38,26 @@ public class AdminController {
         modelAndView.addObject("adminMessage","Content Available Only for Users with Admin Role");
         modelAndView.setViewName("admin/home");
         return modelAndView;
+    }
+
+    @GetMapping(value="/reportList")
+    public ModelAndView reportList(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("admin/report_list");
+        return modelAndView;
+    }
+
+
+    @GetMapping(value = "/SellerReport")
+    public void imprimir(HttpServletResponse response) throws JRException, IOException, SQLException {
+        InputStream jasperStream = this.getClass().getResourceAsStream("/reports/seller_report.jasper");
+        JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, datasource.getConnection());
+        response.setContentType("application/pdf");
+        response.setHeader("Content-Disposition", "inline; filename=livros.pdf");
+
+        final OutputStream outputStream = response.getOutputStream();
+        JasperExportManager.exportReportToPdfStream(jasperPrint, outputStream);
     }
 
 

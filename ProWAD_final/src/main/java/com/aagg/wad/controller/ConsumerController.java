@@ -49,6 +49,4 @@ public class ConsumerController {
         modelAndView.setViewName("consumer/product_list");
         return modelAndView;
     }
-
-
 }

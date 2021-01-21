@@ -29,15 +29,34 @@
         </div>
     </nav>
 
+    <div style="background:transparent !important" class="jumbotron">
+        <h1>Reports !</h1>
+        <p>In this section you can see all the available reports for seller and consumer users.</p>
+    </div>
 
-    <div class="panel-group" style="margin-top:40px">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <span th:utext="${userName}"></span>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card">
+                <img class="card-img-top" th:src="@{/images/seller.png}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
             </div>
-            <p class="admin-message-text text-center" th:utext="${adminMessage}"></p>
+        </div>
+        <div class="col-sm-6">
+            <div class="card">
+                <img class="card-img-top" th:src="@{/images/consumer.jpg}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
         </div>
     </div>
+
 
 </div>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
