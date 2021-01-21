@@ -42,4 +42,35 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
             "WHERE person_person_id = :person_id " +
             "AND product_product_id = :product_id", nativeQuery = true)
     void deleteProductPersonBy(@Param("person_id") Integer person_id, @Param("product_id") Integer product_id);
+
+    @Transactional
+    @Modifying
+    @Query(value = "INSERT INTO product_address " +
+            "values(:product_id, :state_state_id, :town_town_id)",
+            nativeQuery = true)
+    void saveProductAddress(@Param("product_id") Integer product_id, @Param("state_state_id") Integer state_id, @Param("town_town_id") Integer town_id);
+
+
+    @Query(value = "SELECT * FROM product_address " +
+            "WHERE product_id = :product_id",
+            nativeQuery = true)
+    List findProductAddressById(@Param("product_id") Integer product_id);
+
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE product set " +
+            "availability = :availability, " +
+            "cost = :cost, " +
+            "description = :description, " +
+            "name = :name, " +
+            "stock = :stock " +
+            "WHERE product_id = :product_id", nativeQuery = true)
+    void update(@Param("product_id") Integer product_id,
+                   @Param("availability") Boolean availability,
+                   @Param("cost") Float cost,
+                   @Param("description") String description,
+                   @Param("name") String name,
+                   @Param("stock") Integer stock);
+
+
 }

@@ -4,6 +4,7 @@ import com.aagg.wad.model.Product;
 import com.aagg.wad.repository.ProductRepository;
 import com.aagg.wad.repository.StateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -53,5 +54,22 @@ public class ProductService {
 
     public void deleteProductPersonBy(Integer person_id, Integer product_id){
         productRepository.deleteProductPersonBy(person_id, product_id);
+    }
+
+    public void saveProductAddress(Integer product_id, Integer state_id, Integer town_id){
+        productRepository.saveProductAddress(product_id, state_id, town_id);
+    }
+
+    public List findProductAddressById(Integer product_id){
+        return productRepository.findProductAddressById(product_id);
+    }
+
+    public void updateProduct(Product product){
+        productRepository.update(product.getId(),
+                product.getAvailability(),
+                product.getCost(),
+                product.getDescription(),
+                product.getName(),
+                product.getStock());
     }
 }

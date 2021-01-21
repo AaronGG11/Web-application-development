@@ -2,6 +2,7 @@ package com.aagg.wad.controller;
 
 import com.aagg.wad.model.Product;
 import com.aagg.wad.model.Person;
+import com.aagg.wad.model.StateTown;
 import com.aagg.wad.service.MailSenderService;
 import com.aagg.wad.service.ProductService;
 import com.aagg.wad.service.StateService;
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.io.InputStream;
+import java.util.Hashtable;
 import java.util.List;
 
 @Controller
@@ -59,6 +61,7 @@ public class SellerController {
     @GetMapping(value = "/formProduct")
     public ModelAndView addProduct(@ModelAttribute("product") Product product) {
         ModelAndView modelAndView = new ModelAndView();
+
         modelAndView.addObject("stateList", stateService.findAllStates());
         modelAndView.setViewName("seller/product_form");
 
@@ -87,8 +90,16 @@ public class SellerController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Person user = personService.findPersonByPersonName(auth.getName());
 
-        Product aux_product = productService.saveProduct(product);
-        productService.savePersonProduct(aux_product.getId(), user.getId());
+        System.out.println(product);
+
+        if(product.getId() == null){ // new user
+            Product product_saved = productService.saveProduct(product);
+            productService.savePersonProduct(product_saved.getId(), user.getId());
+        }else{ // update user
+            productService.updateProduct(product);
+        }
+
+
 
         modelAndView.addObject("productos", productService.getProductsByPerson(user.getId()));
         modelAndView.setViewName("seller/product_list");
@@ -121,14 +132,16 @@ public class SellerController {
 
     @GetMapping(value = "/update/{id}")
     public ModelAndView updateProduct(@PathVariable Integer id, @ModelAttribute("product") Product product) {
+        //modelAndView.addObject("product", productService.findProductById(id));
         ModelAndView modelAndView = new ModelAndView();
 
-        modelAndView.addObject("product", productService.findProductById(id));
         modelAndView.addObject("stateList", stateService.findAllStates());
         modelAndView.setViewName("seller/product_form");
 
         return modelAndView;
     }
+
+
 
 
 }

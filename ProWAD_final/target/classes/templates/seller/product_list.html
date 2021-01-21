@@ -45,6 +45,7 @@
                 <th scope="col">Cost</th>
                 <th scope="col">Stock</th>
                 <th scope="col">Availability</th>
+                <th scope="col">Address</th>
                 <th scope="col" colspan="3">Options</th>
             </tr>
             </thead>
@@ -56,6 +57,7 @@
                     <td th:text="${producto.cost}"></td>
                     <td th:text="${producto.stock}"></td>
                     <td th:text="${producto.availability}"></td>
+                    <td th:text="${producto.stateTowns}"></td>
                     <td >
                         <a class="btn btn-outline-primary" href="" th:href="@{/seller/view/{id}(id=${producto.id})}" role="button">
                             <i class='bx bx-show'></i>
@@ -74,7 +76,6 @@
                 </tr>
             </tbody>
         </table>
-
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" ></script>
