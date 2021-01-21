@@ -29,7 +29,7 @@
         </div>
     </nav>
 
-    <div style="background:transparent !important" class="jumbotron">
+    <div style="background:transparent !important" class="page-header">
         <h1>Reports !</h1>
         <p>In this section you can see all the available reports for seller and consumer users.</p>
     </div>
@@ -39,9 +39,11 @@
             <div class="card">
                 <img class="card-img-top" th:src="@{/images/seller.png}" alt="Card image cap">
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <h5 class="card-title">Seller report</h5>
+                    <p class="card-text">Reporte PDF de todos los usarios de rol vendedor.</p>
+                    <a href="#" th:href="@{/admin/SellerReport}" role="button" class="btn btn-success">
+                        <i class='bx bxs-file-pdf'> Ver PDF</i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -49,9 +51,11 @@
             <div class="card">
                 <img class="card-img-top" th:src="@{/images/consumer.jpg}" alt="Card image cap">
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <h5 class="card-title">Consumer report</h5>
+                    <p class="card-text">Reporte PDF de todos los usarios de rol cliente.</p>
+                    <a href="#" th:href="@{/admin/ConsumerReport}" role="button" class="btn btn-success">
+                        <i class='bx bxs-file-pdf'> Ver PDF</i>
+                    </a>
                 </div>
             </div>
         </div>
