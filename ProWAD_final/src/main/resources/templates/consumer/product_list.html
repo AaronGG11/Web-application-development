@@ -52,7 +52,9 @@
                     <td th:text="${producto.description}"></td>
                     <td th:text="${producto.cost}"></td>
                     <td th:text="${producto.stock}"></td>
-                    <td><a class="btn btn-outline-success" href="" th:href="@{/consumer/buy/{id}(id=${producto.id})}" role="button"><i class='bx bx-money'> Buy</i></a></td>
+                    <td><a class="btn btn-outline-success" href="" th:href="@{/consumer/buy/{id}(id=${producto.id})}" role="button">
+                        <i class='bx bx-money'></i>Buy</a>
+                    </td>
                 </tr>
             </tbody>
         </table>
