@@ -18,16 +18,23 @@ Sistema web realizado con Spring Boot, el cual simula una tienda online en el qu
 |2|/login|Inicio de sesión|
 |3|/registration|Registro de usuario|
 |4|/admin/home|Página de inicio de administrador|
-|5|/seller/home|Página de inicio de vendedor|
-|6|/seller/productlist|Lista de productos|
-|7|/seller/formProduct|Formulario de registro de producto|
-|8|/seller/getTowns/|Obtener municipios con base a id de estado|
-|9|/consumer/home|Página de inicio de cliente|
-|10|/consumer/productlist|Obtener todos los productos disponibles|
-|11|/consumer/buy/{id}|Comprar producto, disminuye en 1 unidad el stock del vendedor|
-|12|-|-|
-|13|-|-|
-|14|-|-|
+|5|/admin/reportList|Página de acceso a reportes disponibles|
+|6|/admin/SellerReport|Generar reporte de usuarios "seller"|
+|7|/admin/ConsumerReport|Generar reporte de usuarios "consumer"|
+|8|/seller/home|Página de inicio de vendedor|
+|9|/seller/productlist|Lista de productos|
+|10|/seller/formProduct|Formulario de registro de producto|
+|11|/seller/saveProduct|Guardar producto nuevo o actualización|
+|12|/selller/view/{id}|Página de visualización de producto con base a Id|
+|13|/seller/delete/{id}|Eliminar producto con base a Id|
+|14|/seller/update/{id}"|Página de formulario de producto con campos precargados para actualización|
+|15|/seller/getTowns/|Obtener municipios con base a id de estado|
+|16|/consumer/home|Página de inicio de cliente|
+|17|/consumer/productlist|Obtener todos los productos disponibles|
+|18|/consumer/buy/{id}|Comprar producto, disminuye en 1 unidad el stock del vendedor|
+|19|-|-|
+|20|-|-|
+|21|-|-|
 
 
 ### Modelo de datos
