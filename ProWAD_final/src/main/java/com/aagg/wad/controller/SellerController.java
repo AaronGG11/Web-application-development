@@ -9,6 +9,9 @@ import com.aagg.wad.service.StateService;
 import com.aagg.wad.service.PersonService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,8 +21,14 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 
+import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
 import javax.validation.Valid;
+import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.sql.SQLException;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -139,6 +148,39 @@ public class SellerController {
         modelAndView.setViewName("seller/product_form");
 
         return modelAndView;
+    }
+
+    @RequestMapping(path = "/pdfReport", method = RequestMethod.GET)
+    public ModelAndView report() {
+        ModelAndView modelAndView = new ModelAndView();
+
+        return modelAndView;
+    }
+
+    @Autowired
+    DataSource datasource;
+
+
+    @GetMapping(value = "/pdf")
+    public void imprimir(HttpServletResponse response) throws JRException, IOException, SQLException {
+
+        // Pega o arquivo .jasper localizado em resources
+        InputStream jasperStream = this.getClass().getResourceAsStream("/reports/seller_report.jasper");
+
+        // Cria o objeto JaperReport com o Stream do arquivo jasper
+        JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
+        // Passa para o JasperPrint o relatório, os parâmetros e a fonte dos dados, no caso uma conexão ao banco de dados
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, datasource.getConnection());
+
+        // Configura a respota para o tipo PDF
+        response.setContentType("application/pdf");
+        // Define que o arquivo pode ser visualizado no navegador e também nome final do arquivo
+        // para fazer download do relatório troque 'inline' por 'attachment'
+        response.setHeader("Content-Disposition", "inline; filename=livros.pdf");
+
+        // Faz a exportação do relatório para o HttpServletResponse
+        final OutputStream outputStream = response.getOutputStream();
+        JasperExportManager.exportReportToPdfStream(jasperPrint, outputStream);
     }
 
 
