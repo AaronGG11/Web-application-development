@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>List of products</title>
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" th:href="@{/seller/home}">
+                <img th:src="@{/images/logoA.png}" width="30" height="30"/>
+            </a>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/seller/productlist}">Mis productos</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="#">Mis ventas</a>
+                </li>
+                </ul>
+                <a class="btn btn-md btn-danger " th:href="@{/logout}">
+                    <i class='bx bx-power-off'></i>
+                </a>
+            </div>
+        </nav>
+
+        <div style="background:transparent !important" class="jumbotron">
+            <h1>My products</h1>
+            <p>In this section you can register new products to sell, see your products for sale and manage it.</p>
+            <a class="btn btn-outline-primary" href="" th:href="@{/seller/formProduct}" role="button"><i class='bx bx-plus-circle'></i>  Add product</a>
+        </div>
+
+        <table class="table table-sm table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Cost</th>
+                <th scope="col">Stock</th>
+                <th scope="col">Availability</th>
+                <th scope="col">Address</th>
+                <th scope="col" colspan="3">Options</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr th:each="producto : ${productos}">
+                    <td th:text="${producto.id}"></td>
+                    <td th:text="${producto.name}"></td>
+                    <td th:text="${producto.description}"></td>
+                    <td th:text="${producto.cost}"></td>
+                    <td th:text="${producto.stock}"></td>
+                    <td th:text="${producto.availability}"></td>
+                    <td th:text="${producto.stateTowns}"></td>
+                    <td >
+                        <a class="btn btn-outline-primary" href="" th:href="@{/seller/view/{id}(id=${producto.id})}" role="button">
+                            <i class='bx bx-show'></i>
+                        </a>
+                    </td>
+                    <td >
+                        <a class="btn btn-outline-danger" href="" th:href="@{/seller/delete/{id}(id=${producto.id})}" role="button">
+                            <i class='bx bx-trash'></i>
+                        </a>
+                    </td>
+                    <td >
+                        <a class="btn btn-outline-warning" href="" th:href="@{/seller/update/{id}(id=${producto.id})}" role="button">
+                            <i class='bx bx-pencil' ></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" ></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

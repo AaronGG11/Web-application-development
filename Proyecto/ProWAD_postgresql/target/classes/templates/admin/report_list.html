@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Home</title>
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+</head>
+
+<body>
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" th:href="@{/admin/home}">
+            <img th:src="@{/images/logoA.png}" width="30" height="30"/>
+        </a>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/admin/reportList}">Reportes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/admin/graph}">Gr&aacute;fica</a>
+                </li>
+
+            </ul>
+            <a class="btn btn-md btn-danger " th:href="@{/logout}">
+                <i class='bx bx-power-off'></i>
+            </a>
+        </div>
+    </nav>
+
+    <div style="background:transparent !important" class="page-header">
+        <h1>Reports !</h1>
+        <p>In this section you can see all the available reports for seller and consumer users.</p>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card">
+                <img class="card-img-top" th:src="@{/images/seller.png}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Seller report</h5>
+                    <p class="card-text">Reporte PDF de todos los usarios de rol vendedor.</p>
+                    <a href="#" th:href="@{/admin/SellerReport}" target="_blank" role="button" class="btn btn-success">
+                        <i class='bx bxs-file-pdf'></i>
+                        Ver PDF
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card">
+                <img class="card-img-top" th:src="@{/images/consumer.jpg}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Consumer report</h5>
+                    <p class="card-text">Reporte PDF de todos los usarios de rol cliente.</p>
+                    <a href="#" th:href="@{/admin/ConsumerReport}" target="_blank" role="button" class="btn btn-success">
+                        <i class='bx bxs-file-pdf'></i>
+                        Ver PDF
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" ></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

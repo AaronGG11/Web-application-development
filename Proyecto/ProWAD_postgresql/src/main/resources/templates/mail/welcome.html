@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title th:remove="all">Bienvenido al sistema AG</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<style type="text/css">
+p {
+	color: navy;
+}
+
+li {
+	color: blue;
+}
+</style>
+</head>
+<body>
+	<div align="center">
+		<img src="pulpitrock.jpg" th:src="'cid:' + ${imageResourceName}"
+			height="150" width="100%" />
+	</div>
+	<div>
+		<p th:text="'Estimado '+ ${Content.username}+','">Name</p>
+		<p th:text="${Content.message}"></p>
+		<p>Datos de usuario registrado:</p>
+		<ol>
+			<li th:each="variable : ${Content.features}" th:text="${variable}"></li>
+		</ol>
+		<p>Saludos,</p>
+		<p style="font-weight: bold;">AG Soluciones</p>
+	</div>
+</body>
+</html>

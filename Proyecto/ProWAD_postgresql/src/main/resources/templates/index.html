@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<title>Index</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+
+
+<style>
+    body,h1 {font-family: "Raleway", sans-serif}
+    h1 {font-weight: bold}
+    body, html {height: 100%}
+    .bgimg {
+        background-image: url('https://makecalmlovely.com/wp-content/uploads/Clothes-by-colour-1-scaled.jpg');
+        min-height: 100%;
+        background-position: center;
+        background-size: cover;
+    }
+</style>
+<body>
+
+<div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
+    <div class="w3-display-topleft w3-padding-large w3-xlarge">
+        <img th:src="@{/images/logoA.png}" width="400" height="400"/>
+    </div>
+    <div class="w3-display-middle">
+        <h1 class="w3-jumbo w3-animate-top">Sistema AG Soluciones</h1>
+        <p class="w3-large w3-center">
+            <a class="btn btn-secondary"
+               role="button"
+               style="margin:auto;width:25%"
+               th:href="@{/login}"
+               target="_blank">
+                Iniciar sesi&oacute;n
+            </a>
+        </p>
+        <hr class="w3-border-grey" style="margin:auto;width:75%">
+        <p class="w3-large w3-center">
+            Si no estas registrado
+            <a class="w3-large w3-center"
+               style="color: white; font-weight: bold; font-style: italic"
+               th:href="@{/registration}"
+               target="_blank">
+                ¡ Registrate !
+            </a>
+        </p>
+    </div>
+    <div class="w3-display-bottomleft w3-padding-large">
+        Powered by <a
+            style="color: white; font-weight: bold; font-style: italic"
+            href="https://github.com/AaronGG11/Web-application-development/tree/master/Proyecto/ProWAD"
+            target="_blank">
+        Aaron Garcia
+    </a>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" ></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
