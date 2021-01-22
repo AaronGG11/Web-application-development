@@ -9,7 +9,7 @@
     <packaging>jar</packaging>
 
     <name>ProWAD</name>
-    <description>MySQL + Spring Security</description>
+    <description>Postgresl + Spring Security</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -20,6 +20,8 @@
 
     <properties>
         <java.version>11</java.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
     <dependencies>
@@ -135,6 +137,12 @@
             <groupId>net.sf.jasperreports</groupId>
             <artifactId>jasperreports-fonts</artifactId>
             <version>6.16.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+            <scope>provided</scope>
         </dependency>
 
 

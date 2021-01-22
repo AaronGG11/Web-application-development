@@ -124,9 +124,10 @@ public class SellerController {
 
     @GetMapping(value = "/update/{id}")
     public ModelAndView updateProduct(@PathVariable Integer id, @ModelAttribute("product") Product product) {
-        //modelAndView.addObject("product", productService.findProductById(id));
+
         ModelAndView modelAndView = new ModelAndView();
 
+        modelAndView.addObject("product", productService.findProductById(id));
         modelAndView.addObject("stateList", stateService.findAllStates());
         modelAndView.setViewName("seller/product_form");
 
