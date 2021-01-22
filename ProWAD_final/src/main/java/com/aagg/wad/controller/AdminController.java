@@ -92,9 +92,21 @@ public class AdminController {
         values_to_graph.put("all", productService.countAllUsers());
 
         modelAndView.addObject("params", values_to_graph);
-        modelAndView.setViewName("/admin/graph_users");
+        modelAndView.setViewName("admin/graph_users");
 
         return modelAndView;
+    }
+
+    @RequestMapping(value = "/chart", method=RequestMethod.GET)
+    public String chart(Model model) {
+
+        Map<String, Integer> values_to_graph = new HashMap<>();
+        values_to_graph.put("seller", productService.countUserTypeByRoleId(2));
+        values_to_graph.put("consumer", productService.countUserTypeByRoleId(3));
+
+        model.addAttribute("params", values_to_graph);
+
+        return "admin/graph_users";
     }
 
 }
