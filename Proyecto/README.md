@@ -1,4 +1,4 @@
-# Proyecto de la optativa Web Applicaction Development
+# Proyecto de la optativa Web Applicaction Development [Proyecto en postgresql]
 
 Sistema web realizado con Spring Boot, el cual simula una tienda online en el que interactuan el cliente y en vendedor, el vendedor puede publicar sus productos, cada producto tiene que registrar el estado y municipio en donde lo comercializará, posteriormente el cliente podra comprar los prodcutos que desee. 
 
